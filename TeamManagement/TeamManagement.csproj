@@ -241,6 +241,14 @@
     <Compile Include="Migrations\201709191255064_PopulateUsersTable.Designer.cs">
       <DependentUpon>201709191255064_PopulateUsersTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201709191400535_RemovedAlertModel.cs" />
+    <Compile Include="Migrations\201709191400535_RemovedAlertModel.Designer.cs">
+      <DependentUpon>201709191400535_RemovedAlertModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709191402518_RemovedRecreatedAlertModels.cs" />
+    <Compile Include="Migrations\201709191402518_RemovedRecreatedAlertModels.Designer.cs">
+      <DependentUpon>201709191402518_RemovedRecreatedAlertModels.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AlertModels.cs" />
@@ -373,6 +381,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201709191255064_PopulateUsersTable.resx">
       <DependentUpon>201709191255064_PopulateUsersTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709191400535_RemovedAlertModel.resx">
+      <DependentUpon>201709191400535_RemovedAlertModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709191402518_RemovedRecreatedAlertModels.resx">
+      <DependentUpon>201709191402518_RemovedRecreatedAlertModels.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
