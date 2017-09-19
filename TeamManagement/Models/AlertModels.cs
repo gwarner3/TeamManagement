@@ -14,6 +14,8 @@ namespace TeamManagement.Models
         [Display(Name = "Alert Message")]
         public string AlertMessage { get; set; }
 
-        public int UserId { get; set; }
+         public ApplicationUser AspNetUsers { get; set; }
+
+        public string AspNetUsersID { get; set; }
     }
 }
