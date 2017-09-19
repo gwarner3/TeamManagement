@@ -1,4 +1,4 @@
-﻿@*@using TeamManagement.Models*@
+﻿@using Microsoft.Ajax.Utilities
 @model TeamManagement.Models.ApplicationUser
 DOCTYPE html>
 <html>
@@ -11,22 +11,27 @@ DOCTYPE html>
 
 </head>
 <body>
-@
-@if (Model.Role == "Coach")
+@if (Model == null)
 {
-    @Html.Partial("_CoachNavBar")
-}
-else if (Model.Role == "Subscriber")
-{
-    @Html.Partial("_SubscriberNavBar")
-}
-else if (Model.Role == "Player")
-{
-    @Html.Partial("_PlayerNavBar")
+    @Html.Partial("_AnonymousNavBar")
 }
 else
 {
-    @Html.Partial("_AnonymousNavBar")
+    switch (Model.Role)
+    {
+        case "Player":
+            @Html.Partial("_PlayerNavBar")
+            break;
+        case "Coach":
+            @Html.Partial("_CoachNavBar")
+            break;
+        case "Subscriber":
+            @Html.Partial("_SubscriberNavBar")
+            break;
+        default:
+            @Html.Partial("_AnonymousNavBar")
+            break;
+    }
 }
 <div class="container body-content">
     @RenderBody()
