@@ -205,9 +205,14 @@
     <Compile Include="Migrations\201709190242077_AddedMessageModels.Designer.cs">
       <DependentUpon>201709190242077_AddedMessageModels.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201709190259503_AddedApplicationModels.cs" />
+    <Compile Include="Migrations\201709190259503_AddedApplicationModels.Designer.cs">
+      <DependentUpon>201709190259503_AddedApplicationModels.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AlertModels.cs" />
+    <Compile Include="Models\ApplicationModels.cs" />
     <Compile Include="Models\AttendanceModels.cs" />
     <Compile Include="Models\GameScheduleModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -309,6 +314,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201709190242077_AddedMessageModels.resx">
       <DependentUpon>201709190242077_AddedMessageModels.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709190259503_AddedApplicationModels.resx">
+      <DependentUpon>201709190259503_AddedApplicationModels.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

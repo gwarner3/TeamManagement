@@ -63,6 +63,8 @@ namespace TeamManagement.Models
 
         public DbSet<MessageModels> Messages { get; set; }
 
+        public DbSet<ApplicationModels> Applicaitons { get; set; }
+
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
