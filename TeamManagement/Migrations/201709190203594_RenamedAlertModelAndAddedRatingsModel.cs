@@ -3,17 +3,16 @@ namespace TeamManagement.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class AddedAlertModelDbSet : DbMigration
+    public partial class RenamedAlertModelAndAddedRatingsModel : DbMigration
     {
         public override void Up()
         {
-            RenameTable(name: "dbo.GameSchedules", newName: "GameScheduleModels");
             CreateTable(
-                "dbo.Alerts",
+                "dbo.RatingModels",
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        AlertMessage = c.String(nullable: false),
+                        Rating = c.Int(nullable: false),
                         UserId = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id);
@@ -22,8 +21,7 @@ namespace TeamManagement.Migrations
         
         public override void Down()
         {
-            DropTable("dbo.Alerts");
-            RenameTable(name: "dbo.GameScheduleModels", newName: "GameSchedules");
+            DropTable("dbo.RatingModels");
         }
     }
 }

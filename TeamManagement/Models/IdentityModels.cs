@@ -53,7 +53,9 @@ namespace TeamManagement.Models
     {
         public DbSet<GameScheduleModels> GameSchedules { get; set; }
 
-        public DbSet<AlertModels> AlertModels { get; set; }
+        public DbSet<AlertModels> Alerts { get; set; }
+
+        public DbSet<RatingModels> Ratings { get; set; }
 
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
