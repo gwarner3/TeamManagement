@@ -52,6 +52,9 @@ namespace TeamManagement.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public DbSet<GameScheduleModels> GameSchedules { get; set; }
+
+        public DbSet<AlertModels> AlertModels { get; set; }
+
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {

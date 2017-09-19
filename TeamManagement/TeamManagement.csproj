@@ -185,8 +185,13 @@
     <Compile Include="Migrations\201709190027205_AddedGameSchedulesDbSet.Designer.cs">
       <DependentUpon>201709190027205_AddedGameSchedulesDbSet.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201709190042178_AddedAlertModelDbSet.cs" />
+    <Compile Include="Migrations\201709190042178_AddedAlertModelDbSet.Designer.cs">
+      <DependentUpon>201709190042178_AddedAlertModelDbSet.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\AlertModels.cs" />
     <Compile Include="Models\GameScheduleModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -269,6 +274,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201709190027205_AddedGameSchedulesDbSet.resx">
       <DependentUpon>201709190027205_AddedGameSchedulesDbSet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709190042178_AddedAlertModelDbSet.resx">
+      <DependentUpon>201709190042178_AddedAlertModelDbSet.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
