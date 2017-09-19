@@ -17,6 +17,6 @@ namespace TeamManagement.Models
         [Display(Name = "Player")]
         public ApplicationUser AspNetUsers { get; set; }
 
-        public string AspNetUsersID { get; set; }
+        public string AspNetUsersId { get; set; }
     }
 }
