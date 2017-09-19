@@ -349,6 +349,7 @@
     <Content Include="Views\Shared\_CoachNavBar.cshtml" />
     <Content Include="Views\Coach\Index.cshtml" />
     <Content Include="Views\Coach\Edit.cshtml" />
+    <Content Include="Views\Coach\Manage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
