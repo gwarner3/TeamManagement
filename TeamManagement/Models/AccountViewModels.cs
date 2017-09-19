@@ -64,6 +64,9 @@ namespace TeamManagement.Models
 
     public class RegisterViewModel
     {
+        [Display(Name = "UserRole")]
+        public string UserRole { get; set; }
+
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]

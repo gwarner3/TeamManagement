@@ -17,9 +17,10 @@ namespace TeamManagement.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
-
+        public ApplicationDbContext context;
         public AccountController()
         {
+            context = new ApplicationDbContext();
         }
 
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
@@ -139,6 +140,8 @@ namespace TeamManagement.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
+            
+
             return View();
         }
 
@@ -149,9 +152,13 @@ namespace TeamManagement.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
+            var role = new SelectList(context.Roles.Where(u => !u.Name.Contains("Coach") && !u.Name.Contains("Player"))
+                                            .ToList(), "Name", "Name");
+            string subscriber = role.Select(x => x.Value).First().ToString();
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, Role = subscriber};
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
