@@ -3,7 +3,10 @@
     ViewBag.Title = "Edit";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+@if (Model.Role != "Coach")
+{
+    //Redirect
+}
 <h2>Edit Profile</h2>
 
 <p>Here you can edit your profile infomation.</p>
