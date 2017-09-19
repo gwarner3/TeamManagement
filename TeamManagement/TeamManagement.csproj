@@ -217,6 +217,10 @@
     <Compile Include="Migrations\201709191233571_ModifiedAlertModel.Designer.cs">
       <DependentUpon>201709191233571_ModifiedAlertModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201709191239186_ModifiedRatingModels.cs" />
+    <Compile Include="Migrations\201709191239186_ModifiedRatingModels.Designer.cs">
+      <DependentUpon>201709191239186_ModifiedRatingModels.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AlertModels.cs" />
@@ -331,6 +335,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201709191233571_ModifiedAlertModel.resx">
       <DependentUpon>201709191233571_ModifiedAlertModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709191239186_ModifiedRatingModels.resx">
+      <DependentUpon>201709191239186_ModifiedRatingModels.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

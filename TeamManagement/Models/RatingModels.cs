@@ -15,6 +15,8 @@ namespace TeamManagement.Models
         public int Rating { get; set; }
 
         [Display(Name = "Player")]
-        public int  UserId { get; set; }
+        public ApplicationUser AspNetUsers { get; set; }
+
+        public string AspNetUsersID { get; set; }
     }
 }
