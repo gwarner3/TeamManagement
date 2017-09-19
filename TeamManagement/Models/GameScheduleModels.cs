@@ -6,7 +6,7 @@ using System.Web;
 
 namespace TeamManagement.Models
 {
-    public class GameSchedule
+    public class GameScheduleModels
     {
         public int Id { get; set; }
 
