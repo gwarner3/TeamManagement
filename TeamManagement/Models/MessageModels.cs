@@ -13,8 +13,11 @@ namespace TeamManagement.Models
         [Required]
         public string Message { get; set; }
 
+        public ApplicationUser AspNetUsers { get; set; }
+
+
         [Display(Name = "Message Recepient")]
-        public int UserId { get; set; }
+        public string AspNetUsersId { get; set; }
 
     }
 }
