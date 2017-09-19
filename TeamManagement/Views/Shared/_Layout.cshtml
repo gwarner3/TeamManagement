@@ -14,7 +14,7 @@ DOCTYPE html>
 @
 @if (Model.Role == "Coach")
 {
-    @Html.Partial("_AnonymousNavBar")
+    @Html.Partial("_CoachNavBar")
 }
 else if (Model.Role == "Subscriber")
 {
@@ -22,7 +22,7 @@ else if (Model.Role == "Subscriber")
 }
 else if (Model.Role == "Player")
 {
-    @Html.Partial("_AnonymousNavBar")
+    @Html.Partial("_PlayerNavBar")
 }
 else
 {

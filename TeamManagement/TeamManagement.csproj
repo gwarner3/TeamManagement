@@ -340,6 +340,8 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_AnonymousNavBar.cshtml" />
     <Content Include="Views\Shared\_SubscriberNavBar.cshtml" />
+    <Content Include="Views\Shared\_PlayerNavBar.cshtml" />
+    <Content Include="Views\Shared\_CoachNavBar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
