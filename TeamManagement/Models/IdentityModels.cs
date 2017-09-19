@@ -59,6 +59,8 @@ namespace TeamManagement.Models
 
         public DbSet<AttendanceModels> Attendances { get; set; }
 
+        public DbSet<TrackingModels> Trackings { get; set; }
+
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {

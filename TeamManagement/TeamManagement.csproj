@@ -197,6 +197,10 @@
     <Compile Include="Migrations\201709190220146_AddedAttendanceModels.Designer.cs">
       <DependentUpon>201709190220146_AddedAttendanceModels.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201709190232551_AddedTrackingTable.cs" />
+    <Compile Include="Migrations\201709190232551_AddedTrackingTable.Designer.cs">
+      <DependentUpon>201709190232551_AddedTrackingTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AlertModels.cs" />
@@ -205,6 +209,7 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\RatingModels.cs" />
+    <Compile Include="Models\TrackingModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -293,6 +298,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201709190220146_AddedAttendanceModels.resx">
       <DependentUpon>201709190220146_AddedAttendanceModels.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709190232551_AddedTrackingTable.resx">
+      <DependentUpon>201709190232551_AddedTrackingTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
