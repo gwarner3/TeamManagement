@@ -61,6 +61,8 @@ namespace TeamManagement.Models
 
         public DbSet<TrackingModels> Trackings { get; set; }
 
+        public DbSet<MessageModels> Messages { get; set; }
+
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {

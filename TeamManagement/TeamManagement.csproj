@@ -201,6 +201,10 @@
     <Compile Include="Migrations\201709190232551_AddedTrackingTable.Designer.cs">
       <DependentUpon>201709190232551_AddedTrackingTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201709190242077_AddedMessageModels.cs" />
+    <Compile Include="Migrations\201709190242077_AddedMessageModels.Designer.cs">
+      <DependentUpon>201709190242077_AddedMessageModels.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AlertModels.cs" />
@@ -208,6 +212,7 @@
     <Compile Include="Models\GameScheduleModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\MessageModels.cs" />
     <Compile Include="Models\RatingModels.cs" />
     <Compile Include="Models\TrackingModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -301,6 +306,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201709190232551_AddedTrackingTable.resx">
       <DependentUpon>201709190232551_AddedTrackingTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709190242077_AddedMessageModels.resx">
+      <DependentUpon>201709190242077_AddedMessageModels.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
