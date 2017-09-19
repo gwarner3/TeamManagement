@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
+using TeamManagement.Models;
 
 namespace TeamManagement.Controllers
 {
@@ -10,7 +12,10 @@ namespace TeamManagement.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            var _context = new ApplicationDbContext();
+            var email = User.Identity.GetUserName();
+            var _user = _context.Users.Where(u => u.Email == email).FirstOrDefault();
+            return View(_user);
         }
 
         public ActionResult About()
