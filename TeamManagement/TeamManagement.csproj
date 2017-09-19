@@ -193,9 +193,14 @@
     <Compile Include="Migrations\201709190203594_RenamedAlertModelAndAddedRatingsModel.Designer.cs">
       <DependentUpon>201709190203594_RenamedAlertModelAndAddedRatingsModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201709190220146_AddedAttendanceModels.cs" />
+    <Compile Include="Migrations\201709190220146_AddedAttendanceModels.Designer.cs">
+      <DependentUpon>201709190220146_AddedAttendanceModels.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AlertModels.cs" />
+    <Compile Include="Models\AttendanceModels.cs" />
     <Compile Include="Models\GameScheduleModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -285,6 +290,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201709190203594_RenamedAlertModelAndAddedRatingsModel.resx">
       <DependentUpon>201709190203594_RenamedAlertModelAndAddedRatingsModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709190220146_AddedAttendanceModels.resx">
+      <DependentUpon>201709190220146_AddedAttendanceModels.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

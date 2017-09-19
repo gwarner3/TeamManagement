@@ -57,6 +57,8 @@ namespace TeamManagement.Models
 
         public DbSet<RatingModels> Ratings { get; set; }
 
+        public DbSet<AttendanceModels> Attendances { get; set; }
+
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
