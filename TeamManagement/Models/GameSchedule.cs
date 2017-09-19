@@ -1,0 +1,44 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Web;
+
+namespace TeamManagement.Models
+{
+    public class GameSchedule
+    {
+        public int Id { get; set; }
+
+        [Required]
+        [Display(Name = "Game Date")]
+        public DateTime GameDate { get; set; }
+
+        [Required]
+        [Display(Name = "Game Time")]
+        public DateTime GameTime { get; set; }
+
+        [Required]
+        [Display(Name = "Opponent")]
+        public string Opponent { get; set; }
+
+        [Display(Name = "Location Name")]
+        public string LocationName { get; set; }
+
+        [Required]
+        [Display(Name = "Address")]
+        public string Address { get; set; }
+
+        [Required]
+        [Display(Name = "City")]
+        public string City { get; set; }
+
+        [Required]
+        [Display(Name = "State")]
+        public string State { get; set; }
+
+        [Required]
+        [Display(Name = "Zip")]
+        public int Zip { get; set; }
+    }
+}
