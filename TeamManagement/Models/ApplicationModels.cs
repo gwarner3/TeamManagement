@@ -10,7 +10,9 @@ namespace TeamManagement.Models
     {
         public int Id { get; set; }
 
-        public int UserId { get; set; }
+        public ApplicationUser AspNetUsers { get; set; }
+
+        public string AspNetUsersId { get; set; }
 
         [Display(Name = "Application Date")]
         public DateTime ApplicationDate { get; set; }

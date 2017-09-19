@@ -229,6 +229,10 @@
     <Compile Include="Migrations\201709191243329_ModifiedMessageModels.Designer.cs">
       <DependentUpon>201709191243329_ModifiedMessageModels.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201709191246485_ModifiedApplicationModels.cs" />
+    <Compile Include="Migrations\201709191246485_ModifiedApplicationModels.Designer.cs">
+      <DependentUpon>201709191246485_ModifiedApplicationModels.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AlertModels.cs" />
@@ -352,6 +356,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201709191243329_ModifiedMessageModels.resx">
       <DependentUpon>201709191243329_ModifiedMessageModels.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709191246485_ModifiedApplicationModels.resx">
+      <DependentUpon>201709191246485_ModifiedApplicationModels.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
