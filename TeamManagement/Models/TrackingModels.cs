@@ -10,9 +10,8 @@ namespace TeamManagement.Models
     {
         public int Id { get; set; }
 
-        public int UserId { get; set; }
+        public string AspNetUsersId { get; set; }
 
-        [Display(Name = "Player")]
-        public int PlayerId { get; set; }
+        public string PlayerId { get; set; }
     }
 }
