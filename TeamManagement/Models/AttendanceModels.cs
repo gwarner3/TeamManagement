@@ -10,8 +10,10 @@ namespace TeamManagement.Models
     {
         public int Id { get; set; }
 
+        public ApplicationUser AspNetUsers { get; set; }
+
         [Display(Name = "Player")]
-        public int UserId { get; set; }
+        public string AspNetUsersID { get; set; }
 
         [Display(Name = "Absence Date")]
         public DateTime AbsentDate { get; set; }
