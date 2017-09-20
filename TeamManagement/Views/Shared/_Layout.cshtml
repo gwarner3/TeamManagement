@@ -37,10 +37,15 @@ DOCTYPE html>
     <div class="container body-content">
         <div class="row">
             <div class="col-md-2 col-xs-12">
+                <br/>
+                <p>Game Schedule</p>
                 @{
                     foreach (var game in Model.GameSchedule)
                     {
-                        @game.GameDate.ToString("mm-dd")<br />
+                        @game.GameDate.ToString("MM-dd")
+                        <text> vs </text>
+                        @game.Opponent
+                        <br/>
 
                     }
                 }
