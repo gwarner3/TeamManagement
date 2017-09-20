@@ -1,5 +1,6 @@
 ﻿@using Microsoft.Ajax.Utilities
-@model TeamManagement.Models.ApplicationUser
+@using TeamManagement.Models
+@model TeamManagement.ViewModels.LayoutViewModels
 DOCTYPE html>
 <html>
 <head>
@@ -11,24 +12,13 @@ DOCTYPE html>
 
 </head>
 <body>
-
-    @*<div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("414 Sports Club", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })*@
-
-    @if (Model == null)
+    @if (!Request.IsAuthenticated)
     {
         @Html.Partial("_AnonymousNavBar")
     }
     else
     {
-        switch (Model.Role)
+        switch (Model.CurrentUser.Role)
         {
             case "Player":
                 @Html.Partial("_PlayerNavBar")
@@ -47,7 +37,21 @@ DOCTYPE html>
     <div class="container body-content">
         <div class="row">
             <div class="col-md-2 col-xs-12">
-                @*will contain listing of game schedule*@
+                <br/>
+                <p>Game Schedule</p>
+                @{
+                    var _context = new ApplicationDbContext();
+                    var games = _context.GameSchedules.Select(g => g).ToList();
+                     
+                    foreach (var game in games)
+                    {
+                        @game.GameDate.ToString("MM-dd")
+                        <text> vs </text>
+                        @game.Opponent
+                        <br/>
+
+                    }
+                }
             </div>
 
             <div class="col-md-8 col-xs-12">
@@ -69,19 +73,19 @@ DOCTYPE html>
                         amzn_assoc_linkid = "72239489c716ade494ac4ff5e9a76617";
                     </script>
                     <script src="//z-na.amazon-adsystem.com/widgets/q?ServiceVersion=20070822&Operation=GetScript&ID=OneJS&WS=1"></script>*@
-                    <script type="text/javascript">
-                        amzn_assoc_ad_type = "banner";
-                        amzn_assoc_marketplace = "amazon";
-                        amzn_assoc_region = "US";
-                        amzn_assoc_placement = "assoc_banner_placement_default";
-                        amzn_assoc_banner_type = "ez";
-                        amzn_assoc_p = "11";
-                        amzn_assoc_width = "120";
-                        amzn_assoc_height = "600";
-                        amzn_assoc_tracking_id = "gd0bd-20";
-                        amzn_assoc_linkid = "59e0298208947177d1041ca256e819a0";
-                    </script>
-                    <script src="//z-na.amazon-adsystem.com/widgets/q?ServiceVersion=20070822&Operation=GetScript&ID=OneJS&WS=1"></script>
+                <script type="text/javascript">
+                    amzn_assoc_ad_type = "banner";
+                    amzn_assoc_marketplace = "amazon";
+                    amzn_assoc_region = "US";
+                    amzn_assoc_placement = "assoc_banner_placement_default";
+                    amzn_assoc_banner_type = "ez";
+                    amzn_assoc_p = "11";
+                    amzn_assoc_width = "120";
+                    amzn_assoc_height = "600";
+                    amzn_assoc_tracking_id = "gd0bd-20";
+                    amzn_assoc_linkid = "59e0298208947177d1041ca256e819a0";
+                </script>
+                <script src="//z-na.amazon-adsystem.com/widgets/q?ServiceVersion=20070822&Operation=GetScript&ID=OneJS&WS=1"></script>
             </div>
         </div>
 
@@ -95,4 +99,5 @@ DOCTYPE html>
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 </body>
+
 </html>
