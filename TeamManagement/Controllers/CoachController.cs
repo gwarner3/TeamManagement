@@ -47,5 +47,16 @@ namespace TeamManagement.Controllers
 
             return RedirectToAction("Index", "Coach");
         }
+
+        [HttpGet]
+        public ActionResult Manage()
+        {
+            var user = User.Identity.GetUserName();
+            var coach = context.Users.Where(x => x.UserName == user && x.Role == "Coach").First();
+            var team = context.Users.Where(x => x.Role == "Player").ToList();
+            coach.Players = team;
+
+            return View(coach);
+        }
     }
 }

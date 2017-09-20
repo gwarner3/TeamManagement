@@ -1,8 +1,29 @@
-﻿
+﻿@model TeamManagement.Models.ApplicationUser
 @{
     ViewBag.Title = "Manage";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Manage</h2>
+<h2>Team Management</h2>
 
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Player</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th>greeting</th>
+            <th>Howdy</th>
+            <th>Goodbye</th>
+        </tr>
+        @foreach (var player in Model.Players)
+        {
+            <tr>
+                <td>hello</td>
+                <td>hi</td>
+            </tr>
+        }
+    </tbody>
+</table>
