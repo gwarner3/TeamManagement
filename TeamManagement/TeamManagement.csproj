@@ -365,6 +365,7 @@
     <Content Include="Views\Coach\Index.cshtml" />
     <Content Include="Views\Coach\Edit.cshtml" />
     <Content Include="Views\Coach\Manage.cshtml" />
+    <Content Include="Views\Coach\Applications.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
