@@ -171,6 +171,7 @@
     <Compile Include="Controllers\CoachController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\PlayerController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -344,6 +345,9 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+
+    <Content Include="Views\Player\Index.cshtml" />
+
     <Content Include="Views\Shared\_AnonymousNavBar.cshtml" />
     <Content Include="Views\Shared\_SubscriberNavBar.cshtml" />
     <Content Include="Views\Shared\_PlayerNavBar.cshtml" />
@@ -351,6 +355,7 @@
     <Content Include="Views\Coach\Index.cshtml" />
     <Content Include="Views\Coach\Edit.cshtml" />
     <Content Include="Views\Coach\Manage.cshtml" />
+
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
