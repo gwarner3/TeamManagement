@@ -1,7 +1,7 @@
 ﻿@using Microsoft.Ajax.Utilities
+@using Microsoft.AspNet.Identity
 @using TeamManagement.Models
-@model TeamManagement.ViewModels.LayoutViewModels
-DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -12,13 +12,16 @@ DOCTYPE html>
 
 </head>
 <body>
+    @{ var _context = new ApplicationDbContext();}
     @if (!Request.IsAuthenticated)
     {
         @Html.Partial("_AnonymousNavBar")
     }
     else
     {
-        switch (Model.CurrentUser.Role)
+        var email = User.Identity.GetUserName();
+        var user = _context.Users.Where(u => u.Email == email).FirstOrDefault();
+        switch (user.Role)
         {
             case "Player":
                 @Html.Partial("_PlayerNavBar")
@@ -37,18 +40,18 @@ DOCTYPE html>
     <div class="container body-content">
         <div class="row">
             <div class="col-md-2 col-xs-12">
-                <br/>
+                <br />
                 <p>Game Schedule</p>
                 @{
-                    var _context = new ApplicationDbContext();
+                    //var _context = new ApplicationDbContext();
                     var games = _context.GameSchedules.Select(g => g).ToList();
-                     
+
                     foreach (var game in games)
                     {
                         @game.GameDate.ToString("MM-dd")
                         <text> vs </text>
                         @game.Opponent
-                        <br/>
+                        <br />
 
                     }
                 }

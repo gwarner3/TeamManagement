@@ -13,17 +13,7 @@ namespace TeamManagement.Controllers
     {
         public ActionResult Index()
         {
-            var _context = new ApplicationDbContext();
-            var email = User.Identity.GetUserName();
-            var _user = _context.Users.Where(u => u.Email == email).FirstOrDefault();
-
-            var layoutViewModel = new LayoutViewModels
-            {
-                CurrentUser = _user,
-                GameSchedule = _context.GameSchedules.Select(g => g).ToList()
-            };
-
-            return View(layoutViewModel);
+            return View();
         }
 
         public ActionResult About()
