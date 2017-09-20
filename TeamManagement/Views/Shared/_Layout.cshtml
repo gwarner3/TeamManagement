@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.Ajax.Utilities
+@model TeamManagement.Models.ApplicationUser
+DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -9,6 +11,7 @@
 
 </head>
 <body>
+<<<<<<< HEAD
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -18,19 +21,71 @@
                     <span class="icon-bar"></span>
                 </button>
                 @Html.ActionLink("414 Sports Club", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+=======
+    @if (Model == null)
+    {
+        @Html.Partial("_AnonymousNavBar")
+    }
+    else
+    {
+        switch (Model.Role)
+        {
+            case "Player":
+                @Html.Partial("_PlayerNavBar")
+                break;
+            case "Coach":
+                @Html.Partial("_CoachNavBar")
+                break;
+            case "Subscriber":
+                @Html.Partial("_SubscriberNavBar")
+                break;
+            default:
+                @Html.Partial("_AnonymousNavBar")
+                break;
+        }
+    }
+    <div class="container body-content">
+        <div class="row">
+            <div class="col-md-2 col-xs-12">
+                @*will contain listing of game schedule*@
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                </ul>
-                @Html.Partial("_LoginPartial")
+
+            <div class="col-md-8 col-xs-12">
+                @RenderBody()
+>>>>>>> b14d39dd8923d46d1a560be40bf85adc43b3a277
+            </div>
+
+            <div class="col-md-2 col-xs-12">
+                <br />
+                @*<script type="text/javascript">
+                        amzn_assoc_ad_type = "banner";
+                        amzn_assoc_marketplace = "amazon";
+                        amzn_assoc_region = "US";
+                        amzn_assoc_placement = "assoc_banner_placement_default";
+                        amzn_assoc_banner_type = "ez";
+                        amzn_assoc_p = "8";
+                        amzn_assoc_width = "120";
+                        amzn_assoc_height = "240";
+                        amzn_assoc_tracking_id = "gd0bd-20";
+                        amzn_assoc_linkid = "72239489c716ade494ac4ff5e9a76617";
+                    </script>
+                    <script src="//z-na.amazon-adsystem.com/widgets/q?ServiceVersion=20070822&Operation=GetScript&ID=OneJS&WS=1"></script>*@
+                    <script type="text/javascript">
+                        amzn_assoc_ad_type = "banner";
+                        amzn_assoc_marketplace = "amazon";
+                        amzn_assoc_region = "US";
+                        amzn_assoc_placement = "assoc_banner_placement_default";
+                        amzn_assoc_banner_type = "ez";
+                        amzn_assoc_p = "11";
+                        amzn_assoc_width = "120";
+                        amzn_assoc_height = "600";
+                        amzn_assoc_tracking_id = "gd0bd-20";
+                        amzn_assoc_linkid = "59e0298208947177d1041ca256e819a0";
+                    </script>
+                    <script src="//z-na.amazon-adsystem.com/widgets/q?ServiceVersion=20070822&Operation=GetScript&ID=OneJS&WS=1"></script>
             </div>
         </div>
-    </div>
-    <div class="container body-content">
-        @RenderBody()
+
         <hr />
         <footer>
             <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>

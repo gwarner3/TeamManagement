@@ -46,7 +46,7 @@ namespace TeamManagement
             if (!roleManager.RoleExists("Subscriber"))
             {
                 var role = new Microsoft.AspNet.Identity.EntityFramework.IdentityRole();
-                role.Name = "Subcriber";
+                role.Name = "Subscriber";
                 roleManager.Create(role);
 
             }

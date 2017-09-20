@@ -1,0 +1,35 @@
+﻿@model TeamManagement.Models.ApplicationUser
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if (Model.Role != "Coach")
+{
+    //Redirect to index home.
+}
+else
+{
+
+<h2>Welcome @Model.FirstName @Model.LastName !</h2>
+
+<p>If you wish to change your profile information, please click here: @Html.ActionLink("Edit Profile", "Edit", "Coach")</p>
+
+<h3>Profile Information</h3>
+
+    <p>First Name: @Model.FirstName</p>
+
+    <p>Last Name: @Model.LastName</p>
+
+    <p>Address: @Model.Address</p>
+
+    <p>City: @Model.City</p>
+
+    <p>State: @Model.State</p>
+
+    <p>Zip: @Model.Zip</p>
+
+    <p>Email: @Model.Email</p>
+
+    <p>Phone: @Model.Phone</p>
+}
