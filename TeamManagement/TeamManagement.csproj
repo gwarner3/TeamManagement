@@ -169,6 +169,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CoachController.cs" />
+    <Compile Include="Controllers\GameScheduleController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PlayerController.cs" />
@@ -365,6 +366,11 @@
     <Content Include="Views\Coach\Index.cshtml" />
     <Content Include="Views\Coach\Edit.cshtml" />
     <Content Include="Views\Coach\Manage.cshtml" />
+    <Content Include="Views\GameSchedule\Create.cshtml" />
+    <Content Include="Views\GameSchedule\Delete.cshtml" />
+    <Content Include="Views\GameSchedule\Details.cshtml" />
+    <Content Include="Views\GameSchedule\Edit.cshtml" />
+    <Content Include="Views\GameSchedule\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
