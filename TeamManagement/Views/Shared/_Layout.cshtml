@@ -11,38 +11,77 @@ DOCTYPE html>
 
 </head>
 <body>
-@if (Model == null)
-{
-    @Html.Partial("_AnonymousNavBar")
-}
-else
-{
-    switch (Model.Role)
+    @if (Model == null)
     {
-        case "Player":
-            @Html.Partial("_PlayerNavBar")
-            break;
-        case "Coach":
-            @Html.Partial("_CoachNavBar")
-            break;
-        case "Subscriber":
-            @Html.Partial("_SubscriberNavBar")
-            break;
-        default:
-            @Html.Partial("_AnonymousNavBar")
-            break;
+        @Html.Partial("_AnonymousNavBar")
     }
-}
-<div class="container body-content">
-    @RenderBody()
-    <hr/>
-    <footer>
-        <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-    </footer>
-</div>
+    else
+    {
+        switch (Model.Role)
+        {
+            case "Player":
+                @Html.Partial("_PlayerNavBar")
+                break;
+            case "Coach":
+                @Html.Partial("_CoachNavBar")
+                break;
+            case "Subscriber":
+                @Html.Partial("_SubscriberNavBar")
+                break;
+            default:
+                @Html.Partial("_AnonymousNavBar")
+                break;
+        }
+    }
+    <div class="container body-content">
+        <div class="row">
+            <div class="col-md-2 col-xs-12">
+                @*will contain listing of game schedule*@
+            </div>
 
-@Scripts.Render("~/bundles/jquery")
-@Scripts.Render("~/bundles/bootstrap")
-@RenderSection("scripts", required: false)
+            <div class="col-md-8 col-xs-12">
+                @RenderBody()
+            </div>
+
+            <div class="col-md-2 col-xs-12">
+                <br />
+                @*<script type="text/javascript">
+                        amzn_assoc_ad_type = "banner";
+                        amzn_assoc_marketplace = "amazon";
+                        amzn_assoc_region = "US";
+                        amzn_assoc_placement = "assoc_banner_placement_default";
+                        amzn_assoc_banner_type = "ez";
+                        amzn_assoc_p = "8";
+                        amzn_assoc_width = "120";
+                        amzn_assoc_height = "240";
+                        amzn_assoc_tracking_id = "gd0bd-20";
+                        amzn_assoc_linkid = "72239489c716ade494ac4ff5e9a76617";
+                    </script>
+                    <script src="//z-na.amazon-adsystem.com/widgets/q?ServiceVersion=20070822&Operation=GetScript&ID=OneJS&WS=1"></script>*@
+                    <script type="text/javascript">
+                        amzn_assoc_ad_type = "banner";
+                        amzn_assoc_marketplace = "amazon";
+                        amzn_assoc_region = "US";
+                        amzn_assoc_placement = "assoc_banner_placement_default";
+                        amzn_assoc_banner_type = "ez";
+                        amzn_assoc_p = "11";
+                        amzn_assoc_width = "120";
+                        amzn_assoc_height = "600";
+                        amzn_assoc_tracking_id = "gd0bd-20";
+                        amzn_assoc_linkid = "59e0298208947177d1041ca256e819a0";
+                    </script>
+                    <script src="//z-na.amazon-adsystem.com/widgets/q?ServiceVersion=20070822&Operation=GetScript&ID=OneJS&WS=1"></script>
+            </div>
+        </div>
+
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
 </body>
 </html>
