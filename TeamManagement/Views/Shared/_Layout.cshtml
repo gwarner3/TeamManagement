@@ -11,8 +11,8 @@ DOCTYPE html>
 
 </head>
 <body>
-<<<<<<< HEAD
-    <div class="navbar navbar-inverse navbar-fixed-top">
+
+    @*<div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -20,8 +20,8 @@ DOCTYPE html>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("414 Sports Club", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-=======
+                @Html.ActionLink("414 Sports Club", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })*@
+
     @if (Model == null)
     {
         @Html.Partial("_AnonymousNavBar")
@@ -52,7 +52,6 @@ DOCTYPE html>
 
             <div class="col-md-8 col-xs-12">
                 @RenderBody()
->>>>>>> b14d39dd8923d46d1a560be40bf85adc43b3a277
             </div>
 
             <div class="col-md-2 col-xs-12">

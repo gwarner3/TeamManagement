@@ -20,7 +20,7 @@ namespace TeamManagement.Controllers
         public ActionResult Index()
         {
             var user = User.Identity.GetUserId();
-            var player = context.Users.Where(x => x.Id == user);
+            var player = context.Users.Where(x => x.Id == user).First();
             return View(player);
         }
 
