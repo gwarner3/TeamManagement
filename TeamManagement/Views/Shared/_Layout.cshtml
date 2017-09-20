@@ -1,5 +1,6 @@
 ﻿@using Microsoft.Ajax.Utilities
-@model TeamManagement.Models.ApplicationUser
+@using TeamManagement.Models
+@model TeamManagement.ViewModels.LayoutViewModels
 DOCTYPE html>
 <html>
 <head>
@@ -11,13 +12,13 @@ DOCTYPE html>
 
 </head>
 <body>
-    @if (Model == null)
+    @if (Model.CurrentUser == null)
     {
         @Html.Partial("_AnonymousNavBar")
     }
     else
     {
-        switch (Model.Role)
+        switch (Model.CurrentUser.Role)
         {
             case "Player":
                 @Html.Partial("_PlayerNavBar")
@@ -36,7 +37,13 @@ DOCTYPE html>
     <div class="container body-content">
         <div class="row">
             <div class="col-md-2 col-xs-12">
-                @*will contain listing of game schedule*@
+                @{
+                    foreach (var game in Model.GameSchedule)
+                    {
+                        @game.GameDate.ToString("mm-dd")<br />
+
+                    }
+                }
             </div>
 
             <div class="col-md-8 col-xs-12">
@@ -58,19 +65,19 @@ DOCTYPE html>
                         amzn_assoc_linkid = "72239489c716ade494ac4ff5e9a76617";
                     </script>
                     <script src="//z-na.amazon-adsystem.com/widgets/q?ServiceVersion=20070822&Operation=GetScript&ID=OneJS&WS=1"></script>*@
-                    <script type="text/javascript">
-                        amzn_assoc_ad_type = "banner";
-                        amzn_assoc_marketplace = "amazon";
-                        amzn_assoc_region = "US";
-                        amzn_assoc_placement = "assoc_banner_placement_default";
-                        amzn_assoc_banner_type = "ez";
-                        amzn_assoc_p = "11";
-                        amzn_assoc_width = "120";
-                        amzn_assoc_height = "600";
-                        amzn_assoc_tracking_id = "gd0bd-20";
-                        amzn_assoc_linkid = "59e0298208947177d1041ca256e819a0";
-                    </script>
-                    <script src="//z-na.amazon-adsystem.com/widgets/q?ServiceVersion=20070822&Operation=GetScript&ID=OneJS&WS=1"></script>
+                <script type="text/javascript">
+                    amzn_assoc_ad_type = "banner";
+                    amzn_assoc_marketplace = "amazon";
+                    amzn_assoc_region = "US";
+                    amzn_assoc_placement = "assoc_banner_placement_default";
+                    amzn_assoc_banner_type = "ez";
+                    amzn_assoc_p = "11";
+                    amzn_assoc_width = "120";
+                    amzn_assoc_height = "600";
+                    amzn_assoc_tracking_id = "gd0bd-20";
+                    amzn_assoc_linkid = "59e0298208947177d1041ca256e819a0";
+                </script>
+                <script src="//z-na.amazon-adsystem.com/widgets/q?ServiceVersion=20070822&Operation=GetScript&ID=OneJS&WS=1"></script>
             </div>
         </div>
 
@@ -84,4 +91,5 @@ DOCTYPE html>
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 </body>
+
 </html>
