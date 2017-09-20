@@ -12,7 +12,7 @@ DOCTYPE html>
 
 </head>
 <body>
-    @if (Model.CurrentUser == null)
+    @if (!Request.IsAuthenticated)
     {
         @Html.Partial("_AnonymousNavBar")
     }
@@ -40,7 +40,10 @@ DOCTYPE html>
                 <br/>
                 <p>Game Schedule</p>
                 @{
-                    foreach (var game in Model.GameSchedule)
+                    var _context = new ApplicationDbContext();
+                    var games = _context.GameSchedules.Select(g => g).ToList();
+                     
+                    foreach (var game in games)
                     {
                         @game.GameDate.ToString("MM-dd")
                         <text> vs </text>
