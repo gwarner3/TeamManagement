@@ -58,5 +58,41 @@ namespace TeamManagement.Controllers
 
             return View(coach);
         }
+
+        [HttpGet]
+        public ActionResult ChangeStatus(string playerId)
+        {
+            var player = context.Users.Where(x => x.Id == playerId).First();
+            
+            switch(player.IsInjured)
+            {
+                case true:
+                    player.IsInjured = false;
+                    context.SaveChanges();
+                    break;
+                case false:
+                    player.IsInjured = true;
+                    context.SaveChanges();
+                    break;
+            }
+            
+            return RedirectToAction("Manage", "Coach");
+        }
+
+        [HttpGet]
+        public ActionResult Applications()
+        {
+            var applicantIds = context.Applicaitons.Select(x => x.AspNetUsersId).ToList();
+            List<ApplicationUser> applicants = new List<ApplicationUser>();
+            foreach (var id in applicantIds)
+            {
+                applicants.Add(context.Users.Where(x => x.Id == id).First());
+            }
+            var coachUserName = User.Identity.GetUserName();
+            var coach = context.Users.Where(x => x.UserName == coachUserName).First();
+            coach.Players = applicants;
+
+            return View(coach);
+        }
     }
 }

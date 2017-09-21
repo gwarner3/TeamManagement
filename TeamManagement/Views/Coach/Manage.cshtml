@@ -6,23 +6,37 @@
 
 <h2>Team Management</h2>
 
-<table class="table table-bordered table-hover">
+<table class="table table-bordered table-hover"">
     <thead>
         <tr>
-            <th>Player</th>
+            <th>Team Roster</th>
         </tr>
     </thead>
     <tbody>
         <tr>
-            <th>greeting</th>
-            <th>Howdy</th>
-            <th>Goodbye</th>
+            <th>Player Name</th>
+            <th>Joined</th>
+            <th>Position</th>
+            <th>Status</th>
         </tr>
         @foreach (var player in Model.Players)
         {
+            
+           string status = "";
+          
             <tr>
-                <td>hello</td>
-                <td>hi</td>
+                <td>@player.FirstName @player.LastName</td>
+                <td>@player.PlayerJoinDate</td>
+                <td>@player.Position</td>
+                <td>@if (player.IsInjured == true)
+                {
+                    status = "Injured";
+                }
+                else
+                {
+                    status = "Active";
+                }
+                @Html.ActionLink(@status, "ChangeStatus", "Coach", new { playerId = player.Id }, null)</td>
             </tr>
         }
     </tbody>

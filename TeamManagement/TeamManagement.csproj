@@ -371,6 +371,7 @@
     <Content Include="Views\GameSchedule\Details.cshtml" />
     <Content Include="Views\GameSchedule\Edit.cshtml" />
     <Content Include="Views\GameSchedule\Index.cshtml" />
+    <Content Include="Views\Coach\Applications.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
