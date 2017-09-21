@@ -290,6 +290,10 @@
     <Compile Include="Migrations\201709201722347_updating database.Designer.cs">
       <DependentUpon>201709201722347_updating database.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201709211827445_Added alert to be enumerable.cs" />
+    <Compile Include="Migrations\201709211827445_Added alert to be enumerable.Designer.cs">
+      <DependentUpon>201709211827445_Added alert to be enumerable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AlertModels.cs" />
@@ -473,6 +477,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201709201722347_updating database.resx">
       <DependentUpon>201709201722347_updating database.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709211827445_Added alert to be enumerable.resx">
+      <DependentUpon>201709211827445_Added alert to be enumerable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
