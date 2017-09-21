@@ -23,12 +23,15 @@ namespace TeamManagement.Controllers
         public ActionResult Index(AlertModels message)
         {
             var team = context.Users.Where(x => x.Role == "Coach" || x.Role == "Player").ToList();
+            DateTime time = DateTime.Today;
+            var sentDate = time;
 
             foreach(var member in team)
             {
                 AlertModels messages = new AlertModels();
                 messages.AspNetUsersId = member.Id;
                 messages.AlertMessage = message.AlertMessage;
+                messages.DateSent = time.ToString("MM-dd-yyyy");
                 context.Alerts.Add(messages);
                 context.SaveChanges();
             }

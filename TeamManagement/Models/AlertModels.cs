@@ -19,5 +19,11 @@ namespace TeamManagement.Models
         public string AspNetUsersId { get; set; }
 
         public IEnumerable<AlertModels> Alerts { get; set; }
+
+        public string DateSent { get; set; }
+
+        public DateTime? GameDate { get; set; }
+
+        public bool Received { get; set; }
     }
 }

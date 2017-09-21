@@ -9,17 +9,20 @@
 <table class="table table-bordered table-hover" ">
     <thead>
         <tr>
-            <th>Messages.</th>
+            <th>Messages</th>
         </tr>
     </thead>
     <tbody>
         <tr>
+            <th style="width:300px;">Date</th>
             <th>Message</th>
         </tr>
         @foreach(var alerts in Model.Alerts)
         {
             <tr>
+                <td>@alerts.DateSent</td>
                 <td>@alerts.AlertMessage</td>
+                <td>@Html.ActionLink("Delete", "Delete", "Alerts", new { alertId = alerts.Id }, null)</td>
             </tr>
         }
     </tbody>

@@ -298,6 +298,14 @@
     <Compile Include="Migrations\201709211827445_Added alert to be enumerable.Designer.cs">
       <DependentUpon>201709211827445_Added alert to be enumerable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201709212007027_Updated alerts.cs" />
+    <Compile Include="Migrations\201709212007027_Updated alerts.Designer.cs">
+      <DependentUpon>201709212007027_Updated alerts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709212021329_changed DateSent from datetime to string.cs" />
+    <Compile Include="Migrations\201709212021329_changed DateSent from datetime to string.Designer.cs">
+      <DependentUpon>201709212021329_changed DateSent from datetime to string.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AlertModels.cs" />
@@ -484,6 +492,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201709211827445_Added alert to be enumerable.resx">
       <DependentUpon>201709211827445_Added alert to be enumerable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709212007027_Updated alerts.resx">
+      <DependentUpon>201709212007027_Updated alerts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709212021329_changed DateSent from datetime to string.resx">
+      <DependentUpon>201709212021329_changed DateSent from datetime to string.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
