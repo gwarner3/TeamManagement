@@ -24,6 +24,25 @@ namespace TeamManagement.Controllers
             return View(player);
         }
 
+        [HttpPost]
+        public ActionResult Index(ApplicationUser player)
+        {
+            var userId = User.Identity.GetUserId();
+            var playerInfo = context.Users.Where(x => x.Id == userId).First();
+
+            playerInfo.FirstName = player.FirstName;
+            playerInfo.LastName = player.LastName;
+            playerInfo.PhoneNumber = player.PhoneNumber;
+            playerInfo.Address = player.Address;
+            playerInfo.City = player.City;
+            playerInfo.State = player.State;
+            playerInfo.Zip = player.Zip;
+
+            context.SaveChanges();
+
+            return View();
+        }
+
 
         // GET: Player/Details/5
         public ActionResult Details(int id)
