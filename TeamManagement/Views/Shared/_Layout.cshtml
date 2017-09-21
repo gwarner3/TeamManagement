@@ -12,60 +12,64 @@
 
 </head>
 <body>
-    @{ var _context = new ApplicationDbContext();}
-    @if (!Request.IsAuthenticated)
+@{ var _context = new ApplicationDbContext();}
+@if (!Request.IsAuthenticated)
+{
+    @Html.Partial("_AnonymousNavBar")
+}
+else
+{
+    var email = User.Identity.GetUserName();
+    var user = _context.Users.Where(u => u.Email == email).FirstOrDefault();
+    switch (user.Role)
     {
-        @Html.Partial("_AnonymousNavBar")
+        case "Player":
+            @Html.Partial("_PlayerNavBar")
+            ;
+            break;
+        case "Coach":
+            @Html.Partial("_CoachNavBar")
+            ;
+            break;
+        case "Subscriber":
+            @Html.Partial("_SubscriberNavBar")
+            ;
+            break;
+        default:
+            @Html.Partial("_AnonymousNavBar")
+            ;
+            break;
     }
-    else
-    {
-        var email = User.Identity.GetUserName();
-        var user = _context.Users.Where(u => u.Email == email).FirstOrDefault();
-        switch (user.Role)
-        {
-            case "Player":
-                @Html.Partial("_PlayerNavBar");
-                break;
-            case "Coach":
-                @Html.Partial("_CoachNavBar");
-                break;
-            case "Subscriber":
-                @Html.Partial("_SubscriberNavBar");
-                break;
-            default:
-                @Html.Partial("_AnonymousNavBar");
-                break;
-        }
-    }
-    <div class="container body-content">
-        <div class="row">
-            <div class="col-md-2 col-xs-12">
-                <br/>
-                <br/>
-                <p>Game Schedule</p>
-                @{
-                    //var _context = new ApplicationDbContext();
-                    var games = _context.GameSchedules.Select(g => g).ToList();
-                    foreach (var game in games)
-                    {
-                        var linkText = game.GameDate.ToString("MM-dd");
-                        linkText += " vs ";
-                        linkText += game.Opponent;
-                        @Html.ActionLink(linkText, "Details", "GameSchedule", new {id = game.Id}, null)
-                        ;
-                        <br/>
-                    }
+}
+<div class="container body-content">
+    <div class="row">
+        <div class="col-md-2 col-xs-12">
+            <br/>
+            <br/>
+            <p>Game Schedule</p>
+            @{
+                //var _context = new ApplicationDbContext();
+                var games = _context.GameSchedules.Select(g => g).ToList();
+                foreach (var game in games)
+                {
+                    var linkText = game.GameDate.ToString("MM-dd");
+                    linkText += " vs ";
+                    linkText += game.Opponent;
+                    @Html.ActionLink(linkText, "Details", "GameSchedule", new {id = game.Id}, null)
+                    ;
+                    <br/>
                 }
-            </div>
+            }
+        </div>
 
-            <div class="col-md-8 col-xs-12">
-                @RenderBody()
-            </div>
+        <div class="col-md-8 col-xs-12">
+            @RenderBody()
+        </div>
 
-            <div class="col-md-2 col-xs-12">
-                <br />
-                <br/>
-                @*<script type="text/javascript">
+        <div class="col-md-2 col-xs-12">
+            <br/>
+            <br/>
+            @*<script type="text/javascript">
                         amzn_assoc_ad_type = "banner";
                         amzn_assoc_marketplace = "amazon";
                         amzn_assoc_region = "US";
@@ -78,31 +82,31 @@
                         amzn_assoc_linkid = "72239489c716ade494ac4ff5e9a76617";
                     </script>
                     <script src="//z-na.amazon-adsystem.com/widgets/q?ServiceVersion=20070822&Operation=GetScript&ID=OneJS&WS=1"></script>*@
-                <script type="text/javascript">
-                    amzn_assoc_ad_type = "banner";
-                    amzn_assoc_marketplace = "amazon";
-                    amzn_assoc_region = "US";
-                    amzn_assoc_placement = "assoc_banner_placement_default";
-                    amzn_assoc_banner_type = "ez";
-                    amzn_assoc_p = "11";
-                    amzn_assoc_width = "120";
-                    amzn_assoc_height = "600";
-                    amzn_assoc_tracking_id = "gd0bd-20";
-                    amzn_assoc_linkid = "59e0298208947177d1041ca256e819a0";
-                </script>
-                <script src="//z-na.amazon-adsystem.com/widgets/q?ServiceVersion=20070822&Operation=GetScript&ID=OneJS&WS=1"></script>
-            </div>
+            <script type="text/javascript">
+                amzn_assoc_ad_type = "banner";
+                amzn_assoc_marketplace = "amazon";
+                amzn_assoc_region = "US";
+                amzn_assoc_placement = "assoc_banner_placement_default";
+                amzn_assoc_banner_type = "ez";
+                amzn_assoc_p = "11";
+                amzn_assoc_width = "120";
+                amzn_assoc_height = "600";
+                amzn_assoc_tracking_id = "gd0bd-20";
+                amzn_assoc_linkid = "59e0298208947177d1041ca256e819a0";
+            </script>
+            <script src="//z-na.amazon-adsystem.com/widgets/q?ServiceVersion=20070822&Operation=GetScript&ID=OneJS&WS=1"></script>
         </div>
-
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
     </div>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+    <hr/>
+    <footer>
+        <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+    </footer>
+</div>
+
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+@RenderSection("scripts", required: false)
 </body>
 
 

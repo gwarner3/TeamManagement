@@ -66,30 +66,14 @@ namespace TeamManagement.Controllers
                 int lonStart = encodedStringResponse.IndexOf("\"lng\" : ") + 8;
                 int lonEnd = encodedStringResponse.IndexOf(",\n ", lonStart);
                 string lon = encodedStringResponse.Substring(lonStart, lonEnd - lonStart);
-
-                //string lat2 = encodedStringResponse.Substring(latStart + 3, latEnd - latStart);
-
-                //string lat3 = encodedStringResponse.Substring(latStart - 1, latEnd - latStart);
-
-                //string lat4 = encodedStringResponse.Substring(latStart + 1, latEnd - latStart);
-
-                //string lat5 = encodedStringResponse.Substring(latStart - 2, latEnd - latStart);
-
-                //string lat6 = encodedStringResponse.Substring(latStart + 2, latEnd - latStart);
-
-                //JObject jobjectTest = JObject.Parse(encodedStringResponse);
-
-                //string myTest = encodedStringResponse
-                //var byteArray = await response.Content.ReadAsByteArrayAsync();
-                //var latLon = encodedStringResponse[0]
-
-
-
-
-
-
             };
 
+            //Weather api tests
+            var weatherClient = new RestClient("http://api.openweathermap.org/data/2.5/forecast?zip=53218&appid=0ab248ac8b8a306823b9e7881aaddad4");
+            var weatherRrequest = new RestRequest(Method.GET);
+            request.AddHeader("postman-token", "17cbd1ce-2f19-7346-9524-6d04c9c1d13e");
+            request.AddHeader("cache-control", "no-cache");
+            IRestResponse weatherResponse = weatherClient.Execute(weatherRrequest);
 
             return View(gameScheduleModels);
         }
