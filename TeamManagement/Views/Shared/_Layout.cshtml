@@ -24,35 +24,36 @@
         switch (user.Role)
         {
             case "Player":
-                @Html.Partial("_PlayerNavBar")
+                Html.Partial("_PlayerNavBar");
                 break;
             case "Coach":
-                @Html.Partial("_CoachNavBar")
+                Html.Partial("_CoachNavBar");
                 break;
             case "Subscriber":
-                @Html.Partial("_SubscriberNavBar")
+                Html.Partial("_SubscriberNavBar");
                 break;
             default:
-                @Html.Partial("_AnonymousNavBar")
+                Html.Partial("_AnonymousNavBar");
                 break;
         }
     }
     <div class="container body-content">
         <div class="row">
             <div class="col-md-2 col-xs-12">
-                <br />
+                <br/>
+                <br/>
                 <p>Game Schedule</p>
                 @{
                     //var _context = new ApplicationDbContext();
                     var games = _context.GameSchedules.Select(g => g).ToList();
-
                     foreach (var game in games)
                     {
-                        @game.GameDate.ToString("MM-dd")
-                        <text> vs </text>
-                        @game.Opponent
-                        <br />
-
+                        var linkText = game.GameDate.ToString("MM-dd");
+                        linkText += " vs ";
+                        linkText += game.Opponent;
+                        @Html.ActionLink(linkText, "Details", "GameSchedule", new {id = game.Id}, null)
+                        ;
+                        <br/>
                     }
                 }
             </div>
@@ -63,6 +64,7 @@
 
             <div class="col-md-2 col-xs-12">
                 <br />
+                <br/>
                 @*<script type="text/javascript">
                         amzn_assoc_ad_type = "banner";
                         amzn_assoc_marketplace = "amazon";
@@ -102,5 +104,7 @@
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 </body>
+
+
 
 </html>
