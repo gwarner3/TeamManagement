@@ -24,16 +24,16 @@
         switch (user.Role)
         {
             case "Player":
-                Html.Partial("_PlayerNavBar");
+                @Html.Partial("_PlayerNavBar");
                 break;
             case "Coach":
-                Html.Partial("_CoachNavBar");
+                @Html.Partial("_CoachNavBar");
                 break;
             case "Subscriber":
-                Html.Partial("_SubscriberNavBar");
+                @Html.Partial("_SubscriberNavBar");
                 break;
             default:
-                Html.Partial("_AnonymousNavBar");
+                @Html.Partial("_AnonymousNavBar");
                 break;
         }
     }
