@@ -17,5 +17,7 @@ namespace TeamManagement.Models
         public ApplicationUser AspNetUsers { get; set; }
 
         public string AspNetUsersId { get; set; }
+
+        public IEnumerable<AlertModels> Alerts { get; set; }
     }
 }

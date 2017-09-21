@@ -1,0 +1,23 @@
+﻿@model TeamManagement.Models.AlertModels
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Messages</h2>
+
+<p>Send A Message to the team.</p>
+
+@using (Html.BeginForm())
+{
+<div>
+    @Html.TextAreaFor(m => m.AlertMessage, new { @class = "form-control",
+    style = "width:400px; height:200px; resize: none"})
+</div>
+<br />
+<div class="form-group">
+    <div class="col-md-offset-2 col-md-10">
+        <input type="submit" class="btn btn-default" value="Send" />
+    </div>
+</div>
+}

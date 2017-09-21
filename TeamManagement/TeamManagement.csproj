@@ -172,10 +172,12 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AlertsController.cs" />
     <Compile Include="Controllers\CoachController.cs" />
     <Compile Include="Controllers\GameScheduleController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\MessagesController.cs" />
     <Compile Include="Controllers\PlayerController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -292,6 +294,10 @@
     <Compile Include="Migrations\201709201722347_updating database.Designer.cs">
       <DependentUpon>201709201722347_updating database.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201709211827445_Added alert to be enumerable.cs" />
+    <Compile Include="Migrations\201709211827445_Added alert to be enumerable.Designer.cs">
+      <DependentUpon>201709211827445_Added alert to be enumerable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AlertModels.cs" />
@@ -376,6 +382,9 @@
     <Content Include="Views\GameSchedule\Edit.cshtml" />
     <Content Include="Views\GameSchedule\Index.cshtml" />
     <Content Include="Views\Coach\Applications.cshtml" />
+    <Content Include="Views\Messages\Index.cshtml" />
+    <Content Include="Views\Messages\SentMessage.cshtml" />
+    <Content Include="Views\Alerts\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -472,6 +481,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201709201722347_updating database.resx">
       <DependentUpon>201709201722347_updating database.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709211827445_Added alert to be enumerable.resx">
+      <DependentUpon>201709211827445_Added alert to be enumerable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

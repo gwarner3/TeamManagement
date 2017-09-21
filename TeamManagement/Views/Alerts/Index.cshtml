@@ -1,0 +1,26 @@
+﻿@model TeamManagement.Models.AlertModels
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Alerts</h2>
+
+<table class="table table-bordered table-hover" ">
+    <thead>
+        <tr>
+            <th>Messages.</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th>Message</th>
+        </tr>
+        @foreach(var alerts in Model.Alerts)
+        {
+            <tr>
+                <td>@alerts.AlertMessage</td>
+            </tr>
+        }
+    </tbody>
+</table>
