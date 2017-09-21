@@ -24,5 +24,22 @@ namespace TeamManagement.Controllers
 
             return View(alerts);
         }
+
+        [HttpGet]
+        public ActionResult Delete(string alertId)
+        {
+            var message = from messages in context.Alerts
+                          where messages.Id.ToString() == alertId
+                          select messages;
+
+            foreach(var messages in message)
+            {
+                context.Alerts.Remove(messages);
+                
+            }
+            context.SaveChanges();
+
+            return RedirectToAction("Index", "Alerts");
+        }
     }
 }
