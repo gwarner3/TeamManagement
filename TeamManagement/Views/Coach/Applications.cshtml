@@ -1,0 +1,33 @@
+﻿@model TeamManagement.Models.ApplicationUser
+@{
+    ViewBag.Title = "Applications";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Applications</h2>
+
+<table class="table table-bordered table-hover" ">
+    <thead>
+        <tr>
+            <th>Applicants for the team.</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th>Applicant Name</th>
+            <th>Applying Position</th>
+        </tr>
+        @foreach (var applicant in Model.Players)
+        {
+            <tr>
+                <td>@applicant.FirstName @applicant.LastName</td>
+
+                <td>@applicant.Position</td>
+
+                <td>@Html.ActionLink("Accept", "AcceptApplicant", "Coach", new { applicantId = applicant.Id }, null)</td>
+
+                <td>@Html.ActionLink("Deny", "DenyApplicant", "Coach", new { applicantId = applicant.Id }, null)</td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -47,5 +47,79 @@ namespace TeamManagement.Controllers
 
             return RedirectToAction("Index", "Coach");
         }
+
+        [HttpGet]
+        public ActionResult Manage()
+        {
+            var user = User.Identity.GetUserName();
+            var coach = context.Users.Where(x => x.UserName == user && x.Role == "Coach").First();
+            var team = context.Users.Where(x => x.Role == "Player").ToList();
+            coach.Players = team;
+
+            return View(coach);
+        }
+
+        [HttpGet]
+        public ActionResult ChangeStatus(string playerId)
+        {
+            var player = context.Users.Where(x => x.Id == playerId).First();
+            
+            switch(player.IsInjured)
+            {
+                case true:
+                    player.IsInjured = false;
+                    context.SaveChanges();
+                    break;
+                case false:
+                    player.IsInjured = true;
+                    context.SaveChanges();
+                    break;
+            }
+            
+            return RedirectToAction("Manage", "Coach");
+        }
+
+        [HttpGet]
+        public ActionResult Applications()
+        {
+            var applicants = context.Applicaitons.Select(x => x).ToList();
+            List<ApplicationUser> applicantList = new List<ApplicationUser>();
+            foreach (var id in applicants)
+            {
+                applicantList.Add(context.Users.Where(x => x.Id == id.AspNetUsersId).First());
+            }
+            var coachUserName = User.Identity.GetUserName();
+            var coach = context.Users.Where(x => x.UserName == coachUserName).First();
+            coach.Players = applicantList;
+
+            return View(coach);
+        }
+
+        [HttpGet]
+        public ActionResult AcceptApplicant(string applicantId)
+        {
+            var applicant = context.Users.Where(x => x.Id == applicantId).First();
+            applicant.Role = "Player";
+            context.SaveChanges();
+
+            return RedirectToAction("Applications", "Coach");
+        }
+
+        [HttpGet]
+        public ActionResult DenyApplicant(string applicantId)
+        {
+            var id = int.Parse(context.Applicaitons.Where(x => x.AspNetUsersId == applicantId).Select(x=>x.Id).ToString());
+
+            var applicant = from ids in context.Applicaitons
+                            where ids.Id == id
+                            select ids;
+
+            foreach(var ids in applicant)
+            {
+                context.Applicaitons.Remove(ids);
+            }
+
+            return RedirectToAction("Applications", "Coach");
+        }
     }
 }

@@ -1,4 +1,5 @@
 ﻿@using Microsoft.AspNet.Identity
+@using TeamManagement.Models
 @if (Request.IsAuthenticated)
 {
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
@@ -7,7 +8,27 @@
 
     <ul class="nav navbar-nav navbar-right">
         <li>
-            @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Player", routeValues: null, htmlAttributes: new { title = "Manage" })
+            @{
+                var _context = new ApplicationDbContext();
+                var email = User.Identity.GetUserName();
+                var user = _context.Users.Where(u => u.Email == email).FirstOrDefault();
+                switch (user.Role)
+                {
+                    case "Player":
+                        @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new {title = "Manage"})
+                        break;
+                    case "Coach":
+                        @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+                        break;
+                    case "Subscriber":
+                        @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+                        break;
+                    default:
+                        //Login links that display when the user is anonymous
+                        @Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })
+                        break;
+                }
+            }
         </li>
         <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
     </ul>
