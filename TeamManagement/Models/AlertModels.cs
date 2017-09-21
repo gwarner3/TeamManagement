@@ -20,7 +20,7 @@ namespace TeamManagement.Models
 
         public IEnumerable<AlertModels> Alerts { get; set; }
 
-        public DateTime? DateSent { get; set; }
+        public string DateSent { get; set; }
 
         public DateTime? GameDate { get; set; }
 

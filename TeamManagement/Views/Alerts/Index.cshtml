@@ -20,7 +20,7 @@
         @foreach(var alerts in Model.Alerts)
         {
             <tr>
-                <td></td>
+                <td>@alerts.DateSent</td>
                 <td>@alerts.AlertMessage</td>
                 <td>@Html.ActionLink("Delete", "Delete", "Alerts", new { alertId = alerts.Id }, null)</td>
             </tr>
