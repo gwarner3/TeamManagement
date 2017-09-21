@@ -77,6 +77,11 @@
     </dl>
 </div>
 
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+
 <script>
     function initMap() {
         var uluru = {lat: -25.363, lng: 131.044};
@@ -94,7 +99,7 @@
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDvx-D7JQkgrc5GuR7bFme6w2hz_4WJxZo&callback=initMap">
 </script>
 
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+<iframe src="//www.google.com/maps/embed/v1/place?q=Harrods,Brompton%20Rd,%20UK
+      &zoom=17
+      &key=AIzaSyDvx-D7JQkgrc5GuR7bFme6w2hz_4WJxZo">
+</iframe>
