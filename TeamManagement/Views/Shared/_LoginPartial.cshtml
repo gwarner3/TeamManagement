@@ -15,7 +15,7 @@
                 switch (user.Role)
                 {
                     case "Player":
-                        @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new {title = "Manage"})
+                        @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Player", routeValues: null, htmlAttributes: new {title = "Manage"})
                         break;
                     case "Coach":
                         @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
