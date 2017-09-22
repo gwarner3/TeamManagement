@@ -17,7 +17,7 @@
             <th>Player Name</th>
             <th>Joined</th>
             <th>Position</th>
-            <th>Status</th>
+            <th>Is Injured</th>
         </tr>
         @foreach (var player in Model.Players)
         {
@@ -34,9 +34,10 @@
                 }
                 else
                 {
-                    status = "Active";
+                    status = "Not Injured";
                 }
                 @Html.ActionLink(@status, "ChangeStatus", "Coach", new { playerId = player.Id }, null)</td>
+                <td>@Html.ActionLink("Remove", "RemovePlayer", "Coach", new { playerId = player.Id }, null)</td>
             </tr>
         }
     </tbody>

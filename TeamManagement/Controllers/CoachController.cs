@@ -143,5 +143,28 @@ namespace TeamManagement.Controllers
 
             return RedirectToAction("Applications", "Coach");
         }
+
+        [HttpGet]
+        public ActionResult RemovePlayer(string playerId)
+        {
+            var player = context.Users.Where(x => x.Id == playerId).First();
+
+            player.Role = "Subscriber";
+            context.SaveChanges();
+            RemoveAlert(player);
+
+            return RedirectToAction("Manage", "Coach");
+        }
+
+        public void RemoveAlert(ApplicationUser player)
+        {
+            AlertModels alert = new AlertModels();
+            alert.AlertMessage = "This is an automated message. You have been removed from the team.";
+            alert.AspNetUsersId = player.Id;
+            alert.AspNetSenderName = "Team Server";
+            alert.DateSent = DateTime.Today.ToString("MM-dd-yyyy");
+            context.Alerts.Add(alert);
+            context.SaveChanges();            
+        }
     }
 }
