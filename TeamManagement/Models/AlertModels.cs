@@ -18,6 +18,8 @@ namespace TeamManagement.Models
 
         public string AspNetUsersId { get; set; }
 
+        public string AspNetSenderName { get; set; }
+
         public IEnumerable<AlertModels> Alerts { get; set; }
 
         public string DateSent { get; set; }

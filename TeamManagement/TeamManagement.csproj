@@ -310,6 +310,14 @@
     <Compile Include="Migrations\201709221452205_AddedEventNameColumnToGameScheduleModels.Designer.cs">
       <DependentUpon>201709221452205_AddedEventNameColumnToGameScheduleModels.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201709221606170_added senderid to alertmodel.cs" />
+    <Compile Include="Migrations\201709221606170_added senderid to alertmodel.Designer.cs">
+      <DependentUpon>201709221606170_added senderid to alertmodel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709221623286_Changed senderid to sendername in alerts.cs" />
+    <Compile Include="Migrations\201709221623286_Changed senderid to sendername in alerts.Designer.cs">
+      <DependentUpon>201709221623286_Changed senderid to sendername in alerts.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AlertModels.cs" />
@@ -507,6 +515,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201709221452205_AddedEventNameColumnToGameScheduleModels.resx">
       <DependentUpon>201709221452205_AddedEventNameColumnToGameScheduleModels.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709221606170_added senderid to alertmodel.resx">
+      <DependentUpon>201709221606170_added senderid to alertmodel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709221623286_Changed senderid to sendername in alerts.resx">
+      <DependentUpon>201709221623286_Changed senderid to sendername in alerts.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

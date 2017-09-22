@@ -14,13 +14,15 @@
     </thead>
     <tbody>
         <tr>
-            <th style="width:300px;">Date</th>
+            <th style="width:200px;">Date</th>
+            <th>Sender</th>
             <th>Message</th>
         </tr>
         @foreach(var alerts in Model.Alerts)
         {
             <tr>
-                <td>@alerts.DateSent</td>
+                <td style="width:200px">@alerts.DateSent</td>
+                <td>@alerts.AspNetSenderName</td>
                 <td>@alerts.AlertMessage</td>
                 <td>@Html.ActionLink("Delete", "Delete", "Alerts", new { alertId = alerts.Id }, null)</td>
             </tr>
