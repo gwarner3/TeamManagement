@@ -22,6 +22,9 @@ namespace TeamManagement.Controllers
         [HttpPost]
         public ActionResult Index(AlertModels message)
         {
+            var userName = User.Identity.GetUserName();
+            var user = context.Users.Where(x => x.UserName == userName).First();
+            var senderName = user.FirstName + " " + user.LastName;
             var team = context.Users.Where(x => x.Role == "Coach" || x.Role == "Player").ToList();
             DateTime time = DateTime.Today;
             var sentDate = time;
@@ -30,6 +33,7 @@ namespace TeamManagement.Controllers
             {
                 AlertModels messages = new AlertModels();
                 messages.AspNetUsersId = member.Id;
+                messages.AspNetSenderName = senderName;
                 messages.AlertMessage = message.AlertMessage;
                 messages.DateSent = time.ToString("MM-dd-yyyy");
                 context.Alerts.Add(messages);

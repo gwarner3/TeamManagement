@@ -95,10 +95,29 @@ namespace TeamManagement.Controllers
             {
                 db.GameSchedules.Add(gameScheduleModels);
                 db.SaveChanges();
+                AlertNewEvent(gameScheduleModels);
+                
                 return RedirectToAction("Index");
             }
 
             return View(gameScheduleModels);
+        }
+
+        public void AlertNewEvent(GameScheduleModels model)
+        {
+            AlertModels alert = new AlertModels();
+            var users = db.Users.Select(x => x).ToList();
+
+            foreach(var user in users)
+            {
+                alert.AlertMessage = $"There is an event {model.EventName} on {model.GameDate}.";
+                alert.GameDate = model.GameDate;
+                alert.DateSent = DateTime.Today.ToString("MM-dd-yyyy");
+                alert.Received = false;
+                alert.AspNetUsersId = user.Id;
+                db.Alerts.Add(alert);
+                db.SaveChanges();
+            }
         }
 
         // GET: GameSchedule/Edit/5
@@ -155,7 +174,33 @@ namespace TeamManagement.Controllers
             GameScheduleModels gameScheduleModels = db.GameSchedules.Find(id);
             db.GameSchedules.Remove(gameScheduleModels);
             db.SaveChanges();
+            AlertDelete(gameScheduleModels);
+
             return RedirectToAction("Index");
+        }
+
+        public void AlertDelete(GameScheduleModels model)
+        {
+            AlertModels alert = new AlertModels();
+            var users = db.Users.Select(x => x).ToList();
+
+            if (model.GameDate < DateTime.Today)
+            {
+                //ignore delete.
+            }
+            else
+            {
+                foreach (var user in users)
+                {
+                    alert.AlertMessage = $"The event {model.EventName} on {model.GameDate} has been deleted.";
+                    alert.GameDate = model.GameDate;
+                    alert.DateSent = DateTime.Today.ToString("MM-dd-yyyy");
+                    alert.Received = false;
+                    alert.AspNetUsersId = user.Id;
+                    db.Alerts.Add(alert);
+                    db.SaveChanges();
+                }
+            }
         }
 
         protected override void Dispose(bool disposing)

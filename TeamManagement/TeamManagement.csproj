@@ -177,8 +177,13 @@
     <Compile Include="Controllers\GameScheduleController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+
+    <Compile Include="Controllers\PlayerApplicationController.cs" />
+
     <Compile Include="Controllers\MessagesController.cs" />
+
     <Compile Include="Controllers\PlayerController.cs" />
+    <Compile Include="Controllers\TrackingController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -310,6 +315,18 @@
     <Compile Include="Migrations\201709221452205_AddedEventNameColumnToGameScheduleModels.Designer.cs">
       <DependentUpon>201709221452205_AddedEventNameColumnToGameScheduleModels.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201709221606170_added senderid to alertmodel.cs" />
+    <Compile Include="Migrations\201709221606170_added senderid to alertmodel.Designer.cs">
+      <DependentUpon>201709221606170_added senderid to alertmodel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709221623286_Changed senderid to sendername in alerts.cs" />
+    <Compile Include="Migrations\201709221623286_Changed senderid to sendername in alerts.Designer.cs">
+      <DependentUpon>201709221623286_Changed senderid to sendername in alerts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709222006244_Added tracking viewmodel.cs" />
+    <Compile Include="Migrations\201709222006244_Added tracking viewmodel.Designer.cs">
+      <DependentUpon>201709222006244_Added tracking viewmodel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AlertModels.cs" />
@@ -320,11 +337,13 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\MessageModels.cs" />
     <Compile Include="Models\RatingModels.cs" />
+    <Compile Include="ViewModels\PlayerApplicationViewModels.cs" />
     <Compile Include="Models\TrackingModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\AttendanceViewModel.cs" />
     <Compile Include="ViewModels\LayoutViewModels.cs" />
+    <Compile Include="ViewModels\TrackingViewModels.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -395,10 +414,15 @@
     <Content Include="Views\GameSchedule\Edit.cshtml" />
     <Content Include="Views\GameSchedule\Index.cshtml" />
     <Content Include="Views\Coach\Applications.cshtml" />
+
+    <Content Include="Views\PlayerApplication\Index.cshtml" />
+
     <Content Include="Views\Messages\Index.cshtml" />
     <Content Include="Views\Messages\SentMessage.cshtml" />
     <Content Include="Views\Alerts\Index.cshtml" />
     <Content Include="Views\Coach\Attendance.cshtml" />
+    <Content Include="Views\Tracking\Index.cshtml" />
+
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -507,6 +531,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201709221452205_AddedEventNameColumnToGameScheduleModels.resx">
       <DependentUpon>201709221452205_AddedEventNameColumnToGameScheduleModels.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709221606170_added senderid to alertmodel.resx">
+      <DependentUpon>201709221606170_added senderid to alertmodel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709221623286_Changed senderid to sendername in alerts.resx">
+      <DependentUpon>201709221623286_Changed senderid to sendername in alerts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709222006244_Added tracking viewmodel.resx">
+      <DependentUpon>201709222006244_Added tracking viewmodel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

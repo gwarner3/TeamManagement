@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNet.Identity;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,57 +7,43 @@ using TeamManagement.Models;
 
 namespace TeamManagement.Controllers
 {
-    public class PlayerController : Controller
+    public class PlayerApplicationController : Controller
     {
-        public ApplicationDbContext context;
 
-        public PlayerController()
+        private ApplicationDbContext context;
+        public PlayerApplicationController()
         {
             context = new ApplicationDbContext();
         }
-        // GET: Player
+        // GET: PlayerApplication
         public ActionResult Index()
         {
-            var user = User.Identity.GetUserId();
-            var player = context.Users.Where(x => x.Id == user).First();
-            return View(player);
+            var position = new List<string>{"Goal Keeper", "Defender", "Mid-Fielder", "Forward"};
+            
+
+            var playerApplication = new PlayerRegistration()
+            {
+                PositionType = new SelectList(position)
+
+            };
+            return View(playerApplication);
         }
 
-        [HttpPost]
-        public ActionResult Index(ApplicationUser player)
+   
+
+        // GET: PlayerApplication/Details/5
+        public ActionResult Details(int id)
         {
-            var userId = User.Identity.GetUserId();
-            var playerInfo = context.Users.Where(x => x.Id == userId).First();
-
-            playerInfo.FirstName = player.FirstName;
-            playerInfo.LastName = player.LastName;
-            playerInfo.PhoneNumber = player.PhoneNumber;
-            playerInfo.Address = player.Address;
-            playerInfo.City = player.City;
-            playerInfo.State = player.State;
-            playerInfo.Zip = player.Zip;
-
-            context.SaveChanges();
-
             return View();
         }
 
-
-        // GET: Player/Details/5
-        public ActionResult Application()
-        {
-            var user = User.Identity.GetUserId();
-            var subscriber = context.Users.Where(x => x.Id == user).First();
-            return View();
-        }
-
-        // GET: Player/Create
+        // GET: PlayerApplication/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Player/Create
+        // POST: PlayerApplication/Create
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {
@@ -74,13 +59,13 @@ namespace TeamManagement.Controllers
             }
         }
 
-        // GET: Player/Edit/5
+        // GET: PlayerApplication/Edit/5
         public ActionResult Edit(int id)
         {
             return View();
         }
 
-        // POST: Player/Edit/5
+        // POST: PlayerApplication/Edit/5
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
         {
@@ -96,13 +81,13 @@ namespace TeamManagement.Controllers
             }
         }
 
-        // GET: Player/Delete/5
+        // GET: PlayerApplication/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: Player/Delete/5
+        // POST: PlayerApplication/Delete/5
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {

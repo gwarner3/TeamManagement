@@ -1,0 +1,87 @@
+﻿@model TeamManagement.ViewModels.TrackingViewModels
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Tracking Player</h2>
+
+<h3>Players</h3>
+
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Choose a player to track</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th>Player Name</th>
+            <th>Position</th>
+        </tr>
+        @foreach (var player in Model.Player)
+        {
+            var userId = Model.AspNetUser.Id;
+            var tracking = Model.Track.Where(x => x.AspNetUsersId == userId).Select(x=>x.PlayerId.ToString()).ToList();
+
+            if (tracking.Contains(player.Id))
+            {
+            }
+            else
+            {
+            <tr>
+                <td>@player.FirstName @player.LastName</td>
+                <td>@player.Position</td>
+                <td>@Html.ActionLink("Track Player", "TrackPlayer", "Tracking", new { playerid = player.Id }, null)</td>
+            </tr>
+            }
+        }
+    </tbody>
+</table>
+
+<h3>Tracked Players</h3>
+
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Choose a player to track</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th>Player Name</th>
+            <th>Position</th>
+            <th>Rating</th>
+        </tr>
+        @foreach (var tracker in Model.Track)
+        {
+            var playertracked = Model.Player.Where(x => x.Id == tracker.PlayerId).First();
+            var rating = Model.Rate.Where(x => x.AspNetUsersId == playertracked.Id).ToList();
+            int rates = 0;
+            int count = 0;
+            int ratingAverage = 0;
+
+            if (rates == 0)
+            {
+                rates = 0;
+            }
+            else
+            {
+                ratingAverage = rates / count;
+            }
+
+            <tr>
+                <td>@playertracked.FirstName @playertracked.LastName</td>
+                <td>@playertracked.Position</td>
+                <td>@foreach (var rate in rating)
+                {
+                rates += rate.Rating;
+                count++;
+                }
+                @ratingAverage
+                </td>
+                <td>@Html.ActionLink("Stop Tracking", "RemoveTracking", "Tracking", new { trackerId = tracker.PlayerId }, null)</td>
+            </tr>
+        }
+
+    </tbody>
+</table>
