@@ -1,0 +1,50 @@
+﻿@model TeamManagement.ViewModels.AttendanceViewModel
+@{
+    ViewBag.Title = "Manage";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Team Management</h2>
+@*@Html.DropDownListFor(g => g.GameScheduleDates, Model.GameScheduleDates)*@
+@*@{
+    @Html.ListBoxFor(m => m.GameScheduleDates, Model.)
+}*@
+
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Team Roster</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th>Player Name</th>
+            <th>Joined</th>
+            <th>Position</th>
+            <th>Absent/Present</th>
+        </tr>
+        @foreach (var player in Model.Players)
+        {
+            
+           string status = "Present";
+          
+            <tr>
+                <td>@player.FirstName @player.LastName</td>
+                <td>@player.PlayerJoinDate</td>
+                <td>@player.Position</td>
+                @*below is equivalent to: status = player.IsInjured == true ? "Injured" : "Active";*@
+                <td>
+                    @*@if (player.IsInjured == true)
+                {
+                    status = "Injured";
+                }
+                else
+                {
+                    status = "Active";
+                }*@
+                @Html.ActionLink(@status, "UpdateAttendance", "Coach", new { playerId = player.Id }, null)
+            </td>
+            </tr>
+        }
+    </tbody>
+</table>

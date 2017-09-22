@@ -306,6 +306,10 @@
     <Compile Include="Migrations\201709212021329_changed DateSent from datetime to string.Designer.cs">
       <DependentUpon>201709212021329_changed DateSent from datetime to string.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201709221452205_AddedEventNameColumnToGameScheduleModels.cs" />
+    <Compile Include="Migrations\201709221452205_AddedEventNameColumnToGameScheduleModels.Designer.cs">
+      <DependentUpon>201709221452205_AddedEventNameColumnToGameScheduleModels.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AlertModels.cs" />
@@ -319,6 +323,7 @@
     <Compile Include="Models\TrackingModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\AttendanceViewModel.cs" />
     <Compile Include="ViewModels\LayoutViewModels.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -393,6 +398,7 @@
     <Content Include="Views\Messages\Index.cshtml" />
     <Content Include="Views\Messages\SentMessage.cshtml" />
     <Content Include="Views\Alerts\Index.cshtml" />
+    <Content Include="Views\Coach\Attendance.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -498,6 +504,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201709212021329_changed DateSent from datetime to string.resx">
       <DependentUpon>201709212021329_changed DateSent from datetime to string.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709221452205_AddedEventNameColumnToGameScheduleModels.resx">
+      <DependentUpon>201709221452205_AddedEventNameColumnToGameScheduleModels.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

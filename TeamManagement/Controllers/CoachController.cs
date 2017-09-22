@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using TeamManagement.Models;
+using TeamManagement.ViewModels;
 
 namespace TeamManagement.Controllers
 {
@@ -57,6 +58,27 @@ namespace TeamManagement.Controllers
             coach.Players = team;
 
             return View(coach);
+        }
+
+        public ActionResult Attendance()
+        {
+            var gameDates = context.GameSchedules.ToList().Select(x => new SelectListItem
+            {
+                Value = x.GameDate.ToString("D"),
+                Text = x.Opponent
+            });
+
+            var attendanceViewModel = new AttendanceViewModel
+            {
+                Players = context.Users.Where(x => x.Role == "Player").ToList(),
+                //GameScheduleDates = gameDates
+            };
+            return View(attendanceViewModel);
+        }
+
+        public ActionResult UpdateAttendance(string playerId)
+        {
+            return RedirectToAction("Attendance", "Coach");
         }
 
         [HttpGet]
