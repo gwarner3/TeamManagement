@@ -1,0 +1,31 @@
+﻿@model TeamManagement.Models.AlertModels
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Alerts</h2>
+
+<table class="table table-bordered table-hover" ">
+    <thead>
+        <tr>
+            <th>Messages</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th style="width:100px;">Date</th>
+            <th>Sender</th>
+            <th>Message</th>
+        </tr>
+        @foreach(var alerts in Model.Alerts)
+        {
+            <tr>
+                <td style="width:100px">@alerts.DateSent</td>
+                <td>@alerts.AspNetSenderName</td>
+                <td>@alerts.AlertMessage</td>
+                <td>@Html.ActionLink("Delete", "Delete", "Alerts", new { alertId = alerts.Id }, null)</td>
+            </tr>
+        }
+    </tbody>
+</table>

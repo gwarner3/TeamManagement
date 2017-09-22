@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using TeamManagement.Models;
+using TeamManagement.ViewModels;
 
 namespace TeamManagement.Controllers
 {
@@ -57,6 +58,27 @@ namespace TeamManagement.Controllers
             coach.Players = team;
 
             return View(coach);
+        }
+
+        public ActionResult Attendance()
+        {
+            var gameDates = context.GameSchedules.ToList().Select(x => new SelectListItem
+            {
+                Value = x.GameDate.ToString("D"),
+                Text = x.Opponent
+            });
+
+            var attendanceViewModel = new AttendanceViewModel
+            {
+                Players = context.Users.Where(x => x.Role == "Player").ToList(),
+                //GameScheduleDates = gameDates
+            };
+            return View(attendanceViewModel);
+        }
+
+        public ActionResult UpdateAttendance(string playerId)
+        {
+            return RedirectToAction("Attendance", "Coach");
         }
 
         [HttpGet]
@@ -120,6 +142,29 @@ namespace TeamManagement.Controllers
             }
 
             return RedirectToAction("Applications", "Coach");
+        }
+
+        [HttpGet]
+        public ActionResult RemovePlayer(string playerId)
+        {
+            var player = context.Users.Where(x => x.Id == playerId).First();
+
+            player.Role = "Subscriber";
+            context.SaveChanges();
+            RemoveAlert(player);
+
+            return RedirectToAction("Manage", "Coach");
+        }
+
+        public void RemoveAlert(ApplicationUser player)
+        {
+            AlertModels alert = new AlertModels();
+            alert.AlertMessage = "This is an automated message. You have been removed from the team.";
+            alert.AspNetUsersId = player.Id;
+            alert.AspNetSenderName = "Team Server";
+            alert.DateSent = DateTime.Today.ToString("MM-dd-yyyy");
+            context.Alerts.Add(alert);
+            context.SaveChanges();            
         }
     }
 }

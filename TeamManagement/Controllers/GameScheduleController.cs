@@ -1,11 +1,15 @@
-﻿using System;
+﻿using RestSharp;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Web;
 using System.Web.Mvc;
+using Newtonsoft.Json.Linq;
 using TeamManagement.Models;
 
 namespace TeamManagement.Controllers
@@ -21,7 +25,7 @@ namespace TeamManagement.Controllers
         }
 
         // GET: GameSchedule/Details/5
-        public ActionResult Details(int? id)
+        public async System.Threading.Tasks.Task<ActionResult> Details(int? id)
         {
             if (id == null)
             {
@@ -32,6 +36,45 @@ namespace TeamManagement.Controllers
             {
                 return HttpNotFound();
             }
+
+            var client1 = new RestClient("https://maps.googleapis.com/maps/api/geocode/json?address=1600%20Amphitheatre%20Parkway%2C%20Mountain%20View%2C%20CA&key=AIzaSyDvx-D7JQkgrc5GuR7bFme6w2hz_4WJxZo");
+            var request = new RestRequest(Method.GET);
+            request.AddHeader("postman-token", "bb2cc651-09d7-2ab4-7fcf-3dd1b6e34291");
+            request.AddHeader("cache-control", "no-cache");
+            IRestResponse response1 = client1.Execute(request);
+
+            string xyz = response1.Content.ToString();
+            int lonStart1 = xyz.IndexOf("\"lat\" : ") + 8;
+            int lonEnd1 = xyz.IndexOf(",\n ", lonStart1);
+            string lon1 = xyz.Substring(lonStart1, lonEnd1 - lonStart1);
+
+
+            string apiUrl = "https://maps.googleapis.com/maps/api/geocode/json?address=1600%20Amphitheatre%20Parkway%2C%20Mountain%20View%2C%20CA&key=AIzaSyDvx-D7JQkgrc5GuR7bFme6w2hz_4WJxZo";
+
+            using (var client = new HttpClient())
+            {
+                //client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue());
+                HttpResponseMessage response = await client.GetAsync(apiUrl);
+
+                string encodedStringResponse = await response.Content.ReadAsStringAsync();
+
+                int latStart = encodedStringResponse.IndexOf("\"lat\" : ") + 8;
+                int latEnd = encodedStringResponse.IndexOf(",\n ", latStart);
+                string lat = encodedStringResponse.Substring(latStart, latEnd - latStart);
+
+
+                int lonStart = encodedStringResponse.IndexOf("\"lng\" : ") + 8;
+                int lonEnd = encodedStringResponse.IndexOf(",\n ", lonStart);
+                string lon = encodedStringResponse.Substring(lonStart, lonEnd - lonStart);
+            };
+
+            //Weather api tests
+            var weatherClient = new RestClient("http://api.openweathermap.org/data/2.5/forecast?zip=53218&appid=0ab248ac8b8a306823b9e7881aaddad4");
+            var weatherRrequest = new RestRequest(Method.GET);
+            request.AddHeader("postman-token", "17cbd1ce-2f19-7346-9524-6d04c9c1d13e");
+            request.AddHeader("cache-control", "no-cache");
+            IRestResponse weatherResponse = weatherClient.Execute(weatherRrequest);
+
             return View(gameScheduleModels);
         }
 
@@ -52,10 +95,29 @@ namespace TeamManagement.Controllers
             {
                 db.GameSchedules.Add(gameScheduleModels);
                 db.SaveChanges();
+                AlertNewEvent(gameScheduleModels);
+                
                 return RedirectToAction("Index");
             }
 
             return View(gameScheduleModels);
+        }
+
+        public void AlertNewEvent(GameScheduleModels model)
+        {
+            AlertModels alert = new AlertModels();
+            var users = db.Users.Select(x => x).ToList();
+
+            foreach(var user in users)
+            {
+                alert.AlertMessage = $"There is an event {model.EventName} on {model.GameDate}.";
+                alert.GameDate = model.GameDate;
+                alert.DateSent = DateTime.Today.ToString("MM-dd-yyyy");
+                alert.Received = false;
+                alert.AspNetUsersId = user.Id;
+                db.Alerts.Add(alert);
+                db.SaveChanges();
+            }
         }
 
         // GET: GameSchedule/Edit/5
@@ -112,7 +174,33 @@ namespace TeamManagement.Controllers
             GameScheduleModels gameScheduleModels = db.GameSchedules.Find(id);
             db.GameSchedules.Remove(gameScheduleModels);
             db.SaveChanges();
+            AlertDelete(gameScheduleModels);
+
             return RedirectToAction("Index");
+        }
+
+        public void AlertDelete(GameScheduleModels model)
+        {
+            AlertModels alert = new AlertModels();
+            var users = db.Users.Select(x => x).ToList();
+
+            if (model.GameDate < DateTime.Today)
+            {
+                //ignore delete.
+            }
+            else
+            {
+                foreach (var user in users)
+                {
+                    alert.AlertMessage = $"The event {model.EventName} on {model.GameDate} has been deleted.";
+                    alert.GameDate = model.GameDate;
+                    alert.DateSent = DateTime.Today.ToString("MM-dd-yyyy");
+                    alert.Received = false;
+                    alert.AspNetUsersId = user.Id;
+                    db.Alerts.Add(alert);
+                    db.SaveChanges();
+                }
+            }
         }
 
         protected override void Dispose(bool disposing)
