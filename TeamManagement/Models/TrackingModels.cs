@@ -13,5 +13,7 @@ namespace TeamManagement.Models
         public string AspNetUsersId { get; set; }
 
         public string PlayerId { get; set; }
+
+        public RatingModels Rating { get; set; }
     }
 }
