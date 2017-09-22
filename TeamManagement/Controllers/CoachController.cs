@@ -60,23 +60,29 @@ namespace TeamManagement.Controllers
             return View(coach);
         }
 
+        [HttpGet]
         public ActionResult Attendance()
         {
-            var gameDates = context.GameSchedules.ToList().Select(x => new SelectListItem
-            {
-                Value = x.GameDate.ToString("D"),
-                Text = x.Opponent
-            });
+            //var gameDates = context.GameSchedules.ToList();
 
             var attendanceViewModel = new AttendanceViewModel
             {
                 Players = context.Users.Where(x => x.Role == "Player").ToList(),
-                //GameScheduleDates = gameDates
+            //    GameScheduleModels = gameDates,
             };
+
+            var players = context.Users.Where(x => x.Role == "Player").ToList();
+
             return View(attendanceViewModel);
         }
 
-        public ActionResult UpdateAttendance(string playerId)
+        [HttpPost]
+        public ActionResult Attendance(AttendanceViewModel vm)
+        {
+            return RedirectToAction("UpdateAttendance", "Coach");
+        }
+
+        public ActionResult UpdateAttendance(AttendanceViewModel vm)
         {
             return RedirectToAction("Attendance", "Coach");
         }

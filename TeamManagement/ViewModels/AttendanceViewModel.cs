@@ -11,6 +11,9 @@ namespace TeamManagement.ViewModels
     {
         public List<ApplicationUser> Players { get; set; }
 
-        public IEnumerable<SelectList> GameScheduleDates { get; set; }
+        public IEnumerable<GameScheduleModels> GameScheduleModels { get; set; }
+
+        public AttendanceModels AttendanceModels { get; set; }
+    
     }
 }
