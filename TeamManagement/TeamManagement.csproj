@@ -172,6 +172,7 @@
     <Compile Include="Controllers\GameScheduleController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\PlayerApplicationController.cs" />
     <Compile Include="Controllers\PlayerController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -298,6 +299,7 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\MessageModels.cs" />
     <Compile Include="Models\RatingModels.cs" />
+    <Compile Include="ViewModels\PlayerApplicationViewModels.cs" />
     <Compile Include="Models\TrackingModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -372,6 +374,7 @@
     <Content Include="Views\GameSchedule\Edit.cshtml" />
     <Content Include="Views\GameSchedule\Index.cshtml" />
     <Content Include="Views\Coach\Applications.cshtml" />
+    <Content Include="Views\PlayerApplication\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
