@@ -110,10 +110,11 @@ namespace TeamManagement.Controllers
 
             foreach(var user in users)
             {
-                alert.AlertMessage = $"There is an event on {model.GameDate}.";
+                alert.AlertMessage = $"There is an event {model.EventName} on {model.GameDate}.";
                 alert.GameDate = model.GameDate;
                 alert.DateSent = DateTime.Today.ToString("MM-dd-yyyy");
                 alert.Received = false;
+                alert.AspNetUsersId = user.Id;
                 db.Alerts.Add(alert);
                 db.SaveChanges();
             }
@@ -191,10 +192,11 @@ namespace TeamManagement.Controllers
             {
                 foreach (var user in users)
                 {
-                    alert.AlertMessage = $"The event on {model.GameDate} has been deleted.";
+                    alert.AlertMessage = $"The event {model.EventName} on {model.GameDate} has been deleted.";
                     alert.GameDate = model.GameDate;
                     alert.DateSent = DateTime.Today.ToString("MM-dd-yyyy");
                     alert.Received = false;
+                    alert.AspNetUsersId = user.Id;
                     db.Alerts.Add(alert);
                     db.SaveChanges();
                 }
