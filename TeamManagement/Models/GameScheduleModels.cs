@@ -10,6 +10,9 @@ namespace TeamManagement.Models
     {
         public int Id { get; set; }
 
+        [Display(Name = "Event Name")]
+        public string EventName { get; set; }
+
         [Required]
         [Display(Name = "Game Date")]
         public DateTime GameDate { get; set; }

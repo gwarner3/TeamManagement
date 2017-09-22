@@ -1,11 +1,15 @@
-﻿@model List<TeamManagement.Models.ApplicationUser>
+﻿@model TeamManagement.ViewModels.AttendanceViewModel
 @{
     ViewBag.Title = "Manage";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Team Management</h2>
-<p>Date: @Html.TextBox(DateTime.Today.ToString()) </p>
+@*@Html.DropDownListFor(g => g.GameScheduleDates, Model.GameScheduleDates)*@
+@*@{
+    @Html.ListBoxFor(m => m.GameScheduleDates, Model.)
+}*@
+
 <table class="table table-bordered table-hover">
     <thead>
         <tr>
@@ -19,7 +23,7 @@
             <th>Position</th>
             <th>Absent/Present</th>
         </tr>
-        @foreach (var player in Model)
+        @foreach (var player in Model.Players)
         {
             
            string status = "Present";
