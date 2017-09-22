@@ -319,6 +319,7 @@
     <Compile Include="Models\TrackingModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\AttendanceViewModel.cs" />
     <Compile Include="ViewModels\LayoutViewModels.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -393,6 +394,7 @@
     <Content Include="Views\Messages\Index.cshtml" />
     <Content Include="Views\Messages\SentMessage.cshtml" />
     <Content Include="Views\Alerts\Index.cshtml" />
+    <Content Include="Views\Coach\Attendance.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

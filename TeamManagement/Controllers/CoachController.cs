@@ -59,6 +59,18 @@ namespace TeamManagement.Controllers
             return View(coach);
         }
 
+        public ActionResult Attendance()
+        {
+            List<ApplicationUser> team = context.Users.Where(x => x.Role == "Player").ToList();
+
+            return View(team);
+        }
+
+        public ActionResult UpdateAttendance(string playerId)
+        {
+            return RedirectToAction("Attendance", "Coach");
+        }
+
         [HttpGet]
         public ActionResult ChangeStatus(string playerId)
         {
