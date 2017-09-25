@@ -11,6 +11,7 @@ using System.Web;
 using System.Web.Mvc;
 using Newtonsoft.Json.Linq;
 using TeamManagement.Models;
+using TeamManagement.ViewModels;
 
 namespace TeamManagement.Controllers
 {
@@ -37,7 +38,12 @@ namespace TeamManagement.Controllers
                 return HttpNotFound();
             }
 
-            var client1 = new RestClient("https://maps.googleapis.com/maps/api/geocode/json?address=1600%20Amphitheatre%20Parkway%2C%20Mountain%20View%2C%20CA&key=AIzaSyDvx-D7JQkgrc5GuR7bFme6w2hz_4WJxZo");
+            GameScheduleModelWithLatLong gs = new GameScheduleModelWithLatLong
+            {
+              GameScheduleWithLatLong = gameScheduleModels
+            };
+
+            var client1 = new RestClient("https://maps.googleapis.com/maps/api/geocode/json?address=1600%20Amphitheatre%20Parkway%2C%20Mountain%20View%2C%20CA&key=AIzaSyCD9K9065uQrMDhHXA7CuOVkfGS6jwV2x0");
             var request = new RestRequest(Method.GET);
             request.AddHeader("postman-token", "bb2cc651-09d7-2ab4-7fcf-3dd1b6e34291");
             request.AddHeader("cache-control", "no-cache");
@@ -49,7 +55,7 @@ namespace TeamManagement.Controllers
             string lon1 = xyz.Substring(lonStart1, lonEnd1 - lonStart1);
 
 
-            string apiUrl = "https://maps.googleapis.com/maps/api/geocode/json?address=1600%20Amphitheatre%20Parkway%2C%20Mountain%20View%2C%20CA&key=AIzaSyDvx-D7JQkgrc5GuR7bFme6w2hz_4WJxZo";
+            string apiUrl = "https://maps.googleapis.com/maps/api/geocode/json?address=1600%20Amphitheatre%20Parkway%2C%20Mountain%20View%2C%20CA&key=AIzaSyCD9K9065uQrMDhHXA7CuOVkfGS6jwV2x0";
 
             using (var client = new HttpClient())
             {
@@ -61,21 +67,26 @@ namespace TeamManagement.Controllers
                 int latStart = encodedStringResponse.IndexOf("\"lat\" : ") + 8;
                 int latEnd = encodedStringResponse.IndexOf(",\n ", latStart);
                 string lat = encodedStringResponse.Substring(latStart, latEnd - latStart);
+                gs.Lat = lat;
 
 
                 int lonStart = encodedStringResponse.IndexOf("\"lng\" : ") + 8;
-                int lonEnd = encodedStringResponse.IndexOf(",\n ", lonStart);
+                int lonEnd = encodedStringResponse.IndexOf("\n ", lonStart);
                 string lon = encodedStringResponse.Substring(lonStart, lonEnd - lonStart);
+                gs.Long = lon;
             };
 
             //Weather api tests
-            var weatherClient = new RestClient("http://api.openweathermap.org/data/2.5/forecast?zip=53218&appid=0ab248ac8b8a306823b9e7881aaddad4");
-            var weatherRrequest = new RestRequest(Method.GET);
-            request.AddHeader("postman-token", "17cbd1ce-2f19-7346-9524-6d04c9c1d13e");
-            request.AddHeader("cache-control", "no-cache");
-            IRestResponse weatherResponse = weatherClient.Execute(weatherRrequest);
+            //var weatherClient = new RestClient("http://api.openweathermap.org/data/2.5/forecast?zip=53218&appid=0ab248ac8b8a306823b9e7881aaddad4");
+            //var weatherRrequest = new RestRequest(Method.GET);
+            //request.AddHeader("postman-token", "17cbd1ce-2f19-7346-9524-6d04c9c1d13e");
+            //request.AddHeader("cache-control", "no-cache");
+            //IRestResponse weatherResponse = weatherClient.Execute(weatherRrequest);
 
-            return View(gameScheduleModels);
+            
+            
+
+            return View(gs);
         }
 
         // GET: GameSchedule/Create

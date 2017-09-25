@@ -347,6 +347,7 @@
     <Compile Include="Models\MessageModels.cs" />
     <Compile Include="Models\RatingModels.cs" />
     <Compile Include="ViewModels\Application_Subscriber_ViewModel.cs" />
+    <Compile Include="ViewModels\GameScheduleModelWithLatLong.cs" />
     <Compile Include="ViewModels\PlayerApplicationViewModels.cs" />
     <Compile Include="Models\TrackingModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
