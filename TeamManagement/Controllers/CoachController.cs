@@ -159,19 +159,9 @@ namespace TeamManagement.Controllers
         [HttpGet]
         public ActionResult DenyApplicant(string applicantId)
         {
-            var id = int.Parse(context.Applicaitons.Where(x => x.AspNetUsersId == applicantId).Select(x=>x.Id).ToString());
-            var user = context.Users.Where(x => x.Id == id.ToString()).First();
-
-
-            var applicant = from ids in context.Applicaitons
-                            where ids.Id == id
-                            select ids;
-
-            foreach(var ids in applicant)
-            {
-                context.Applicaitons.Remove(ids);
-            }
-            Denied(user);
+            var applicant = context.Users.Where(x => x.Id == applicantId).First();
+            RemoveApplication(applicantId);
+            Denied(applicant);
             context.SaveChanges();
 
             return RedirectToAction("Applications", "Coach");
@@ -219,11 +209,11 @@ namespace TeamManagement.Controllers
             context.SaveChanges();
         }
 
-        public void Denied(ApplicationUser player)
+        public void Denied(ApplicationUser subscriber)
         {
             AlertModels alert = new AlertModels();
             alert.AlertMessage = "This is an automated message. Your application was denied. If you wish to apply for a different position please return to your profile to begin a new application.";
-            alert.AspNetUsersId = player.Id;
+            alert.AspNetUsersId = subscriber.Id;
             alert.AspNetSenderName = "Team Server";
             alert.DateSent = DateTime.Today.ToString("MM-dd-yyyy");
             context.Alerts.Add(alert);
