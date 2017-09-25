@@ -436,6 +436,7 @@
     <Content Include="Views\Account\Profile.cshtml" />
     <Content Include="Views\PlayerApplication\AwaitConfirmation.cshtml" />
     <Content Include="Views\PlayerApplication\AlreadyApplied.cshtml" />
+    <Content Include="Views\Tracking\Rate.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
