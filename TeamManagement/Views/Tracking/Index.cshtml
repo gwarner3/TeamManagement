@@ -79,6 +79,7 @@
                 }
                 @ratingAverage
                 </td>
+                <td>@Html.ActionLink("Rate", "Rate", "Tracking", new { playerId = playertracked.Id }, null)</td>
                 <td>@Html.ActionLink("Stop Tracking", "RemoveTracking", "Tracking", new { trackerId = tracker.PlayerId }, null)</td>
             </tr>
         }
