@@ -1,5 +1,4 @@
-﻿@using System.Data.SqlClient
-@model TeamManagement.ViewModels.AttendanceViewModel
+﻿@model TeamManagement.ViewModels.AttendanceViewModel
 @{
     ViewBag.Title = "Manage";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -9,9 +8,7 @@
 <p>Enter date to mark attendance for</p>    
 
 
-    @*@Html.DropDownListFor(model => model.ToString(), new SelectList(Model.ToString(), "GameDate", "DisplayName"), "")*@
-
-    @Html.EditorFor(model => model.AttendanceModels.AbsentDate)
+   
 
     @*<table class="table table-bordered table-hover">
         <thead>
@@ -68,9 +65,27 @@
 <div class="form-group">
 <input type="submit" class="btn btn-default" value="Save" />
 </div>*@
-@foreach (var player in Model.Players)
+
+@using (Html.BeginForm("Attendance", "Coach"))
 {
-    <br/>
-    @Html.CheckBox("Present", false) 
-    @Html.Label(@player.FirstName)
+
+    @*@Html.DropDownListFor(model => model.GameSchedules, new SelectList(Model.GameSchedules, "GameDate", "DisplayName"), "")*@
+    
+    @Html.DropDownListFor(model => model.GameDates, new SelectList(Model.GameDates, "Date", "Date"), "")
+
+    @*@Html.EditorFor(model => model.AttendanceModels.AbsentDate)*@
+
+    //foreach (var player in Model.Players)
+    //{
+    <br />
+    @*@Html.CheckBox("Present", false)*@
+        @*@Html.CheckBoxFor(p=>p.IsAbsent)
+        @Html.Label(@player.FirstName)*@
+  @*}*@
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Set Attendance" class="btn btn-default" />
+        </div>
+    </div>
 }

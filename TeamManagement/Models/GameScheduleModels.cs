@@ -44,6 +44,7 @@ namespace TeamManagement.Models
         [Required]
         [Display(Name = "Zip")]
         public int Zip { get; set; }
+
         [NotMapped]
         public string DisplayName {
             get { return EventName + " " + GameDate; }

@@ -177,11 +177,8 @@
     <Compile Include="Controllers\GameScheduleController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-
     <Compile Include="Controllers\PlayerApplicationController.cs" />
-
     <Compile Include="Controllers\MessagesController.cs" />
-
     <Compile Include="Controllers\PlayerController.cs" />
     <Compile Include="Controllers\TrackingController.cs" />
     <Compile Include="Global.asax.cs">
@@ -414,15 +411,13 @@
     <Content Include="Views\GameSchedule\Edit.cshtml" />
     <Content Include="Views\GameSchedule\Index.cshtml" />
     <Content Include="Views\Coach\Applications.cshtml" />
-
     <Content Include="Views\PlayerApplication\Index.cshtml" />
-
     <Content Include="Views\Messages\Index.cshtml" />
     <Content Include="Views\Messages\SentMessage.cshtml" />
     <Content Include="Views\Alerts\Index.cshtml" />
     <Content Include="Views\Coach\Attendance.cshtml" />
     <Content Include="Views\Tracking\Index.cshtml" />
-
+    <Content Include="Views\Coach\MarkAttendance.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

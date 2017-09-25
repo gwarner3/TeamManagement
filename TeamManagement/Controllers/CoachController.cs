@@ -65,10 +65,14 @@ namespace TeamManagement.Controllers
         {
             //var gameDates = context.GameSchedules.ToList();
 
+            var gameDates = context.GameSchedules.Select(g => g.GameDate).ToList();
+
             var attendanceViewModel = new AttendanceViewModel
             {
-                Players = context.Users.Where(x => x.Role == "Player").ToList(),
-            //    GameScheduleModels = gameDates,
+                //Players = context.Users.Where(x => x.Role == "Player").ToList(),
+                //GameSchedules = gameDates
+                GameDates = gameDates
+                
             };
 
             var players = context.Users.Where(x => x.Role == "Player").ToList();
@@ -79,7 +83,22 @@ namespace TeamManagement.Controllers
         [HttpPost]
         public ActionResult Attendance(AttendanceViewModel vm)
         {
-            return RedirectToAction("UpdateAttendance", "Coach");
+           
+            var players = context.Users.Where(x => x.Role == "Player").ToList();
+
+            var playersAtGame = players.Where(t => t.PlayerJoinDate >= vm.GameDates[0]).ToList();
+
+            vm.Players = playersAtGame;
+
+            //TempData["newView"] =  new vm;
+            
+
+            return View(vm);
+        }
+
+        public ActionResult MarkAttendance(AttendanceViewModel vm)
+        {
+            return View();
         }
 
         public ActionResult UpdateAttendance(AttendanceViewModel vm)
