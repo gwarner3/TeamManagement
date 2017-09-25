@@ -27,19 +27,6 @@ namespace TeamManagement.Controllers
         [HttpPost]
         public ActionResult Index(ApplicationUser player)
         {
-            var userId = User.Identity.GetUserId();
-            var playerInfo = context.Users.Where(x => x.Id == userId).First();
-
-            playerInfo.FirstName = player.FirstName;
-            playerInfo.LastName = player.LastName;
-            playerInfo.PhoneNumber = player.PhoneNumber;
-            playerInfo.Address = player.Address;
-            playerInfo.City = player.City;
-            playerInfo.State = player.State;
-            playerInfo.Zip = player.Zip;
-
-            context.SaveChanges();
-
             return View();
         }
 
@@ -75,25 +62,34 @@ namespace TeamManagement.Controllers
         }
 
         // GET: Player/Edit/5
-        public ActionResult Edit(int id)
+        [HttpGet]
+        public ActionResult Edit()
         {
-            return View();
+            var user = User.Identity.GetUserId();
+            var player = context.Users.Where(x => x.Id == user).First();
+
+            return View(player);
         }
 
         // POST: Player/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(ApplicationUser player)
         {
-            try
-            {
-                // TODO: Add update logic here
+            var userId = User.Identity.GetUserId();
+            var playerInfo = context.Users.Where(x => x.Id == userId).First();
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            playerInfo.FirstName = player.FirstName;
+            playerInfo.LastName = player.LastName;
+            playerInfo.PhoneNumber = player.PhoneNumber;
+            playerInfo.Address = player.Address;
+            playerInfo.City = player.City;
+            playerInfo.State = player.State;
+            playerInfo.Zip = player.Zip;
+
+            context.SaveChanges();
+
+
+            return View();
         }
 
         // GET: Player/Delete/5
@@ -117,5 +113,22 @@ namespace TeamManagement.Controllers
                 return View();
             }
         }
+
+        [HttpGet]
+        public ActionResult Schedule()
+        {
+            var schedule = context.GameSchedules.ToList();
+
+            return View(schedule);
+        }
+
+        [HttpGet]
+        public ActionResult Team()
+        {
+            var players = context.Users.Where(x=>x.Role == "Player").ToList();
+
+            return View(players);
+        }
+
     }
 }

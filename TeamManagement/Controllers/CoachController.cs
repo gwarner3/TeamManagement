@@ -43,7 +43,6 @@ namespace TeamManagement.Controllers
             coachInfo.Address = coach.Address;
             coachInfo.Zip = coach.Zip;
             coachInfo.PhoneNumber = coach.Phone;
-            coachInfo.Email = coach.Email;
             context.SaveChanges();
 
             return RedirectToAction("Index", "Coach");
@@ -96,10 +95,12 @@ namespace TeamManagement.Controllers
             {
                 case true:
                     player.IsInjured = false;
+                    IsNotInjured(player);
                     context.SaveChanges();
                     break;
                 case false:
                     player.IsInjured = true;
+                    IsInjured(player);
                     context.SaveChanges();
                     break;
             }
@@ -128,7 +129,10 @@ namespace TeamManagement.Controllers
         {
             var applicant = context.Users.Where(x => x.Id == applicantId).First();
             applicant.Role = "Player";
+            Accepted(applicant);
+            RemoveApplication(applicantId);
             context.SaveChanges();
+            
 
             return RedirectToAction("Applications", "Coach");
         }
@@ -137,6 +141,8 @@ namespace TeamManagement.Controllers
         public ActionResult DenyApplicant(string applicantId)
         {
             var id = int.Parse(context.Applicaitons.Where(x => x.AspNetUsersId == applicantId).Select(x=>x.Id).ToString());
+            var user = context.Users.Where(x => x.Id == id.ToString()).First();
+
 
             var applicant = from ids in context.Applicaitons
                             where ids.Id == id
@@ -146,8 +152,18 @@ namespace TeamManagement.Controllers
             {
                 context.Applicaitons.Remove(ids);
             }
+            Denied(user);
+            context.SaveChanges();
 
             return RedirectToAction("Applications", "Coach");
+        }
+
+        public void RemoveApplication(string applicantId)
+        {
+            ApplicationModels applicant = context.Applicaitons.Where(x => x.AspNetUsersId == applicantId).First();
+
+            context.Applicaitons.Remove(applicant);
+            context.SaveChanges();
         }
 
         [HttpGet]
@@ -172,5 +188,97 @@ namespace TeamManagement.Controllers
             context.Alerts.Add(alert);
             context.SaveChanges();            
         }
+
+        public void Accepted(ApplicationUser player)
+        {
+            AlertModels alert = new AlertModels();
+            alert.AlertMessage = "This is an automated message. Your application has been accept. Welcome to the team!";
+            alert.AspNetUsersId = player.Id;
+            alert.AspNetSenderName = "Team Server";
+            alert.DateSent = DateTime.Today.ToString("MM-dd-yyyy");
+            context.Alerts.Add(alert);
+            context.SaveChanges();
+        }
+
+        public void Denied(ApplicationUser player)
+        {
+            AlertModels alert = new AlertModels();
+            alert.AlertMessage = "This is an automated message. Your application was denied. If you wish to apply for a different position please return to your profile to begin a new application.";
+            alert.AspNetUsersId = player.Id;
+            alert.AspNetSenderName = "Team Server";
+            alert.DateSent = DateTime.Today.ToString("MM-dd-yyyy");
+            context.Alerts.Add(alert);
+            context.SaveChanges();
+        }
+
+        public void IsInjured(ApplicationUser player)
+        {
+            List<TrackingModels> userIds = context.Trackings.Where(x => x.PlayerId == player.Id).ToList();
+            var listOfUsers = GetUserList(userIds);
+            if (listOfUsers.Count == 0)
+            {
+                //No users are tracking.
+            }
+            else
+            {
+                foreach (var user in listOfUsers)
+                {
+                    AlertModels alert = new AlertModels();
+                    alert.AlertMessage = $"This is an automated message. {player.FirstName} {player.LastName} is now injured.";
+                    alert.AspNetUsersId = user.Id.ToString();
+                    alert.AspNetSenderName = "Team Server";
+                    alert.DateSent = DateTime.Today.ToString("MM-dd-yyyy");
+                    context.Alerts.Add(alert);
+                    context.SaveChanges();
+                }
+            }
+        }
+
+        public void IsNotInjured(ApplicationUser player)
+        {
+            List<TrackingModels> userIds = context.Trackings.Where(x => x.PlayerId == player.Id).ToList();
+            var listOfUsers = GetUserList(userIds);
+            if (listOfUsers.Count == 0)
+            {
+                //No users are tracking.
+            }
+            else
+            {
+                foreach (var user in listOfUsers)
+                {
+                    AlertModels alert = new AlertModels();
+                    alert.AlertMessage = $"This is an automated message. {player.FirstName} {player.LastName} is not injured anymore.";
+                    alert.AspNetUsersId = user.Id.ToString();
+                    alert.AspNetSenderName = "Team Server";
+                    alert.DateSent = DateTime.Today.ToString("MM-dd-yyyy");
+                    context.Alerts.Add(alert);
+                    context.SaveChanges();
+                }
+            }
+        }
+
+        public List<ApplicationUser> GetUserList(List<TrackingModels> userIds)
+        {
+            List<ApplicationUser> listOfUsers = new List<ApplicationUser>();
+            List<ApplicationUser> users = context.Users.Where(x => x.Role == "Subscriber").ToList();
+            
+            if (userIds.Count == 0)
+            {
+                //No users.
+            }
+            else
+            {
+                for(var i = 0; i < users.Count; i++)
+                {
+                    ApplicationUser user = new ApplicationUser();
+                    if(userIds.Select(x=>x.AspNetUsersId).Contains(users[i].Id))
+                    {
+                        user = users[i];
+                        listOfUsers.Add(user);
+                    }
+                }
+            }
+            return listOfUsers;
+        } 
     }
 }

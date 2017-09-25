@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using TeamManagement.Models;
+using TeamManagement.ViewModels;
 
 namespace TeamManagement.Controllers
 {
@@ -430,6 +431,22 @@ namespace TeamManagement.Controllers
             base.Dispose(disposing);
         }
 
+
+        [HttpGet]
+        public ActionResult Profile()
+        {
+            var userName = User.Identity.GetUserName();
+            var subscriber = context.Users.Where(x => x.UserName == userName).First();
+
+            var applications = context.Applicaitons.ToList();
+
+            Application_Subscriber_ViewModel viewModel = new Application_Subscriber_ViewModel();
+
+            viewModel.Applications = applications;
+            viewModel.ApplicationUser = subscriber;
+
+            return View(viewModel);
+        }
         #region Helpers
         // Used for XSRF protection when adding external logins
         private const string XsrfKey = "XsrfId";

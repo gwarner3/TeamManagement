@@ -1,0 +1,31 @@
+﻿@model IEnumerable<TeamManagement.Models.ApplicationUser>
+@{
+    ViewBag.Title = "Team";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Team</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            Player Name
+        </th>
+        <th>
+            Player Position
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                <p>@item.FirstName @item.LastName</p>
+            </td>
+            <td>
+                <p>@item.Position</p>
+            </td>
+        </tr>
+    }
+
+</table>

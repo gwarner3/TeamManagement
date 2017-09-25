@@ -1,0 +1,16 @@
+﻿@model TeamManagement.ViewModels.Application_Subscriber_ViewModel
+@{
+    ViewBag.Title = "Profile";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Welcome Subscriber.</h2>
+
+@if (Model.Applications.Select(x => x.AspNetUsersId).Contains(Model.ApplicationUser.Id))
+{
+    <p>You have already applied to be a player. Please wait for the coach to accept or deny your application.</p>
+}
+else
+{
+    <p>If you would like to apply to be a player, please apply here: @Html.ActionLink("Application", "Index", "PlayerApplication")</p>
+}
