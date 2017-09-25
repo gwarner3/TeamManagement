@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -29,6 +30,36 @@ namespace TeamManagement.Controllers
             return View(playerApplication);
         }
 
+        [HttpPost]
+        public ActionResult Index(PlayerRegistration subscriber)
+        {
+            var applicants = context.Applicaitons.Select(x => x.AspNetUsersId).ToList();
+            var userName = User.Identity.GetUserName();
+            var user = context.Users.Where(x => x.UserName == userName).First();
+
+            if (applicants.Contains(user.Id))
+            {
+                return RedirectToAction("AlreadyApplied", "PlayerApplication");
+            }
+            else
+            {
+                ApplicationModels applicant = new ApplicationModels();
+                user.FirstName = subscriber.FirstName;
+                user.LastName = subscriber.LastName;
+                user.Address = subscriber.Address;
+                user.City = subscriber.City;
+                user.State = subscriber.State;
+                user.Phone = subscriber.PhoneNumber;
+                user.Zip = subscriber.Zip;
+                user.Position = subscriber.SelectedPosition;
+                applicant.AspNetUsersId = user.Id;
+                applicant.ApplicationDate = DateTime.Today;
+                context.Applicaitons.Add(applicant);
+                context.SaveChanges(); 
+
+                return RedirectToAction("AwaitConfirmation", "PlayerApplication");
+            }
+        }
    
 
         // GET: PlayerApplication/Details/5
@@ -111,6 +142,16 @@ namespace TeamManagement.Controllers
             {
                 return View();
             }
+        }
+
+        public ActionResult AwaitConfirmation()
+        {
+            return View();
+        }
+
+        public ActionResult AlreadyApplied()
+        {
+            return View();
         }
     }
 }

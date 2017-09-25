@@ -18,10 +18,10 @@
                         @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Player", routeValues: null, htmlAttributes: new {title = "Manage"})
                         break;
                     case "Coach":
-                        @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Player", routeValues: null, htmlAttributes: new { title = "Manage" })
+                        @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Coach", routeValues: null, htmlAttributes: new { title = "Manage" })
                         break;
                     case "Subscriber":
-                        @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+                        @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Profile", "Account", routeValues: null, htmlAttributes: new { title = "Manage" })
                         break;
                     default:
                         //Login links that display when the user is anonymous

@@ -177,11 +177,8 @@
     <Compile Include="Controllers\GameScheduleController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-
     <Compile Include="Controllers\PlayerApplicationController.cs" />
-
     <Compile Include="Controllers\MessagesController.cs" />
-
     <Compile Include="Controllers\PlayerController.cs" />
     <Compile Include="Controllers\TrackingController.cs" />
     <Compile Include="Global.asax.cs">
@@ -327,6 +324,18 @@
     <Compile Include="Migrations\201709222006244_Added tracking viewmodel.Designer.cs">
       <DependentUpon>201709222006244_Added tracking viewmodel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201709240414457_Added Application_Subscriber_ViewModel.cs" />
+    <Compile Include="Migrations\201709240414457_Added Application_Subscriber_ViewModel.Designer.cs">
+      <DependentUpon>201709240414457_Added Application_Subscriber_ViewModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709250123488_Checking pending Migrations.cs" />
+    <Compile Include="Migrations\201709250123488_Checking pending Migrations.Designer.cs">
+      <DependentUpon>201709250123488_Checking pending Migrations.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709250131171_Changed raitng player user to playerId.cs" />
+    <Compile Include="Migrations\201709250131171_Changed raitng player user to playerId.Designer.cs">
+      <DependentUpon>201709250131171_Changed raitng player user to playerId.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AlertModels.cs" />
@@ -337,6 +346,8 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\MessageModels.cs" />
     <Compile Include="Models\RatingModels.cs" />
+    <Compile Include="ViewModels\Application_Subscriber_ViewModel.cs" />
+    <Compile Include="ViewModels\GameScheduleModelWithLatLong.cs" />
     <Compile Include="ViewModels\PlayerApplicationViewModels.cs" />
     <Compile Include="Models\TrackingModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -414,15 +425,19 @@
     <Content Include="Views\GameSchedule\Edit.cshtml" />
     <Content Include="Views\GameSchedule\Index.cshtml" />
     <Content Include="Views\Coach\Applications.cshtml" />
-
     <Content Include="Views\PlayerApplication\Index.cshtml" />
-
     <Content Include="Views\Messages\Index.cshtml" />
     <Content Include="Views\Messages\SentMessage.cshtml" />
     <Content Include="Views\Alerts\Index.cshtml" />
     <Content Include="Views\Coach\Attendance.cshtml" />
     <Content Include="Views\Tracking\Index.cshtml" />
-
+    <Content Include="Views\Player\Edit.cshtml" />
+    <Content Include="Views\Player\Schedule.cshtml" />
+    <Content Include="Views\Player\Team.cshtml" />
+    <Content Include="Views\Account\Profile.cshtml" />
+    <Content Include="Views\PlayerApplication\AwaitConfirmation.cshtml" />
+    <Content Include="Views\PlayerApplication\AlreadyApplied.cshtml" />
+    <Content Include="Views\Tracking\Rate.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -540,6 +555,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201709222006244_Added tracking viewmodel.resx">
       <DependentUpon>201709222006244_Added tracking viewmodel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709240414457_Added Application_Subscriber_ViewModel.resx">
+      <DependentUpon>201709240414457_Added Application_Subscriber_ViewModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709250123488_Checking pending Migrations.resx">
+      <DependentUpon>201709250123488_Checking pending Migrations.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709250131171_Changed raitng player user to playerId.resx">
+      <DependentUpon>201709250131171_Changed raitng player user to playerId.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

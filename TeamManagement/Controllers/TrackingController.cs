@@ -59,5 +59,28 @@ namespace TeamManagement.Controllers
 
             return RedirectToAction("Index", "Tracking");
         }
+
+        [HttpGet]
+        public ActionResult Rate(string playerId)
+        {
+            var userName = User.Identity.GetUserName();
+            var user = context.Users.Where(x => x.UserName == userName).First();
+            var rate = new RatingModels();
+            rate.AspNetPlayerId = playerId;
+            rate.AspNetUsersId = user.Id;
+            
+            return View(rate);
+        }
+
+        [HttpPost]
+        public ActionResult Rate(RatingModels rate)
+        {
+            RatingModels rating = new RatingModels();
+            rating.AspNetUsersId = rate.AspNetUsersId;
+            rating.AspNetPlayerId = rate.AspNetPlayerId;
+            rating.Rating = rate.Rating;
+
+            return RedirectToAction("Index", "Tracking");
+        }
     }
 }
