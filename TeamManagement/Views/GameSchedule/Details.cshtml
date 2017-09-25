@@ -5,7 +5,12 @@
 }
 
 <h2>Details</h2>
-
+<style>
+    #map {
+        height: 400px;
+        width: 100%;
+    }
+</style>
 <div>
     <h4>GameScheduleModels</h4>
     <hr />
@@ -26,61 +31,61 @@
             @Html.DisplayFor(model => model.GameScheduleWithLatLong.GameTime)
         </dd>
 
-        @*<dt>
-            @Html.DisplayNameFor(model => model.Opponent)
+        <dt>
+            @Html.DisplayNameFor(model => model.GameScheduleWithLatLong.Opponent)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Opponent)
+            @Html.DisplayFor(model => model.GameScheduleWithLatLong.Opponent)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.LocationName)
+            @Html.DisplayNameFor(model => model.GameScheduleWithLatLong.LocationName)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.LocationName)
+            @Html.DisplayFor(model => model.GameScheduleWithLatLong.LocationName)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Address)
+            @Html.DisplayNameFor(model => model.GameScheduleWithLatLong.Address)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Address)
+            @Html.DisplayFor(model => model.GameScheduleWithLatLong.Address)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.City)
+            @Html.DisplayNameFor(model => model.GameScheduleWithLatLong.City)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.City)
+            @Html.DisplayFor(model => model.GameScheduleWithLatLong.City)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.State)
+            @Html.DisplayNameFor(model => model.GameScheduleWithLatLong.State)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.State)
+            @Html.DisplayFor(model => model.GameScheduleWithLatLong.State)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Zip)
+            @Html.DisplayNameFor(model => model.GameScheduleWithLatLong.Zip)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Zip)
-        </dd>*@
+            @Html.DisplayFor(model => model.GameScheduleWithLatLong.Zip)
+        </dd>
 
-    @*</dl>
+    </dl>
 </div>
 
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Edit", "Edit", new { id = Model.GameScheduleWithLatLong.Id }) |
     @Html.ActionLink("Back to List", "Index")
-</p>*@
+</p>
 
         <div id="map"></div>
         <script>

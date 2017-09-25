@@ -43,7 +43,13 @@ namespace TeamManagement.Controllers
               GameScheduleWithLatLong = gameScheduleModels
             };
 
-            var client1 = new RestClient("https://maps.googleapis.com/maps/api/geocode/json?address=1600%20Amphitheatre%20Parkway%2C%20Mountain%20View%2C%20CA&key=AIzaSyCD9K9065uQrMDhHXA7CuOVkfGS6jwV2x0");
+            var address = gameScheduleModels.Address.Split(' ');
+            var addresspercent = string.Join("%", address);
+            var city = gameScheduleModels.City.ToString();
+            var state = gameScheduleModels.State.ToString();
+            var zip = gameScheduleModels.Zip.ToString();
+            var mapAddres = addresspercent + "%" + city + "%" + state + "%" + zip;
+            var client1 = new RestClient("https://maps.googleapis.com/maps/api/geocode/json?address=" + mapAddres + "&key=AIzaSyCD9K9065uQrMDhHXA7CuOVkfGS6jwV2x0");
             var request = new RestRequest(Method.GET);
             request.AddHeader("postman-token", "bb2cc651-09d7-2ab4-7fcf-3dd1b6e34291");
             request.AddHeader("cache-control", "no-cache");
@@ -55,8 +61,8 @@ namespace TeamManagement.Controllers
             string lon1 = xyz.Substring(lonStart1, lonEnd1 - lonStart1);
 
 
-            string apiUrl = "https://maps.googleapis.com/maps/api/geocode/json?address=1600%20Amphitheatre%20Parkway%2C%20Mountain%20View%2C%20CA&key=AIzaSyCD9K9065uQrMDhHXA7CuOVkfGS6jwV2x0";
-
+            //string apiUrl = "https://maps.googleapis.com/maps/api/geocode/json?address=1600%20Amphitheatre%20Parkway%2C%20Mountain%20View%2C%20CA&key=AIzaSyCD9K9065uQrMDhHXA7CuOVkfGS6jwV2x0";
+            string apiUrl = "https://maps.googleapis.com/maps/api/geocode/json?address=" + mapAddres + "&key=AIzaSyCD9K9065uQrMDhHXA7CuOVkfGS6jwV2x0";
             using (var client = new HttpClient())
             {
                 //client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue());
