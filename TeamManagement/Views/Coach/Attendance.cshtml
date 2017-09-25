@@ -70,14 +70,14 @@
 {
 
     @*@Html.DropDownListFor(model => model.GameSchedules, new SelectList(Model.GameSchedules, "GameDate", "DisplayName"), "")*@
-    
+    <div>
     @Html.DropDownListFor(model => model.GameDates, new SelectList(Model.GameDates, "Date", "Date"), "")
-
+        </div>
     @*@Html.EditorFor(model => model.AttendanceModels.AbsentDate)*@
 
     //foreach (var player in Model.Players)
     //{
-    <br />
+    <br/>
     @*@Html.CheckBox("Present", false)*@
         @*@Html.CheckBoxFor(p=>p.IsAbsent)
         @Html.Label(@player.FirstName)*@
@@ -89,3 +89,4 @@
         </div>
     </div>
 }
+
