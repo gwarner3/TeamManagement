@@ -40,18 +40,28 @@ namespace TeamManagement.Controllers
         // GET: PlayerApplication/Create
         public ActionResult Create()
         {
+            
             return View();
         }
 
         // POST: PlayerApplication/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(PlayerRegistration playerRegistration)
         {
             try
             {
                 // TODO: Add insert logic here
+                //var user = context.Users.Create();
+                //user.FirstName = playerRegistration.FirstName;
+                //user.LastName = playerRegistration.LastName;
+                //user.Address = playerRegistration.Address;
+                //user.City = playerRegistration.City;
+                //user.State = playerRegistration.State;
+                //user.Zip = playerRegistration.Zip;
+                //user.PhoneNumber = playerRegistration.PhoneNumber;
+                //user.Position = playerRegistration.SelectedPosition;
 
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Home");
             }
             catch
             {
