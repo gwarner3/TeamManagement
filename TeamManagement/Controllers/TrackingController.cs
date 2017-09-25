@@ -59,5 +59,10 @@ namespace TeamManagement.Controllers
 
             return RedirectToAction("Index", "Tracking");
         }
+
+        public void Rate()
+        {
+
+        }
     }
 }
